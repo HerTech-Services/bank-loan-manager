@@ -1,0 +1,300 @@
+/** Model CCM-BANK **/
+entity Scoring {
+	label String required
+	score Integer required min(0)    
+}
+
+entity Sector {
+	label String required  
+    identifier String maxlength(32) unique
+}
+
+entity DowngradingStep {
+	label String required
+    identifier String maxlength(32) unique
+}
+
+entity Downgrading {
+	createdDate Instant required
+    capital BigDecimal required min(0)
+    interests BigDecimal required min(0)
+    penalties BigDecimal required min(0)
+    accessories BigDecimal required min(0)
+    description TextBlob
+}
+
+entity RejectType {
+	label String required
+    identifier String maxlength(32) unique   
+}
+
+entity Reject {
+	createdDate Instant required
+    capital BigDecimal required min(0)
+    interests BigDecimal required min(0)
+    penalties BigDecimal required min(0)
+    accessories BigDecimal required min(0)
+    description TextBlob
+}
+
+entity Client {
+	codBnk String maxlength(4)
+    codCli String maxlength(7)   
+    nomCli String
+    mendCli String
+    sfCli MaritalStatus
+    titre String maxlength(15)
+   	datNai String maxlength(10)
+    lieuNai String maxlength(50)
+    natCli String maxlength(20)
+    lngCli String maxlength(20)
+    socCli String maxlength(20)
+    emploi String maxlength(20)
+    sexe Sex
+    numCni String maxlength(20)
+    datCni String maxlength(10)
+    finCni String maxlength(10)
+    lieuCni String maxlength(20)
+    autoCni String maxlength(50)
+    adr String maxlength(50)
+    tel String maxlength(50)
+    ville String maxlength(50)
+    site String maxlength(50)
+    loc String maxlength(50)
+    fax String maxlength(50)
+    agnce String maxlength(50)
+    mail String maxlength(50)
+    pays String maxlength(50)
+}
+
+enum MaritalStatus {
+    CELIBATIRE(C) MARIE(M) VEUF(V) DIVORCE(D)
+}
+
+enum Sex {
+    MASCULIN(M) FEMININ(F)
+}
+
+entity Compte {
+	codBnk String maxlength(4)
+    codCpt String maxlength(15)
+    numCpt String maxlength(15)
+    libCpt String maxlength(20)
+    numCpta String maxlength(15)
+    numAgc String maxlength(3)
+    typCpt String maxlength(4)
+    etat String maxlength(4)
+    codCli String maxlength(7) 
+    numCtr String maxlength(50)
+    codeFor String maxlength(50)
+}
+
+entity Engagement {
+	scoring Integer required min(0)
+	subject String required
+    amount BigDecimal required
+    delay Integer required min(1)
+    payment Echeance required
+    delayed Integer required min(0)
+    reimbursement ModeRembourssement required
+    analyse TextBlob     
+    isStop Boolean
+    isDeleted Boolean
+    startDate Instant
+    enDate Instant
+    createdDate Instant
+    updatedDate Instant
+    deletedDate Instant
+    stopedDate Instant    
+}
+
+enum Echeance {
+    MENSUELLE TRIMESTRIELLE SEMESTRIELLE ANNUELLE
+}
+
+enum ModeRembourssement {
+    CONSTANT DEGRESSIF
+}
+
+entity EngagementType {
+	label String required
+    isEnabled Boolean required
+    processDelay Integer required
+    delay1 Integer required
+    delay2 Integer required
+}
+
+entity Status {
+	label String required maxlength(50)
+    isSystem Boolean required
+    imgFilename String
+    canBeSearched Boolean required
+    canBeModified Boolean required
+    enabled Boolean required    
+}
+
+entity Task {	
+    sequence Integer required min(1)
+    isSystem Boolean required
+    processDelay Integer required
+    delay1 Integer required
+    delay2 Integer required
+    viewed Integer
+    createdDate Instant
+    processDate Instant
+    processComment TextBlob
+}
+
+/* Type de Tache (AVIS DECISION) */
+entity TaskType {
+	label String required
+    identifier String required maxlength(50)
+    isEnabled Boolean
+}
+
+/* Liste des Actions possibles sur un engagement */
+entity Action {
+	label String required
+    keyword String required maxlength(32)
+    isSystem Boolean required
+    actionPage String
+    history Boolean
+    composant String maxlength(128)
+   	parameters TextBlob
+}
+
+entity TasktypeStatusAction{
+	
+}
+
+entity TaskLog {
+    comment String
+    createdDate Instant
+    taskProperties TextBlob
+    engagementProperties TextBlob
+}
+
+entity History {
+	tableName String required maxlength(50)
+    recordId String required
+    eventType String
+    eventDate Instant
+    info String
+	host String required maxlength(50)
+    properties TextBlob
+}
+
+entity Poste {
+	code String required maxlength(32) unique
+    label String required
+    shortLabel String maxlength(50)
+    entity String
+    enabled Boolean required
+    adrs1 String
+    adrs2 String
+    adrs3 String   
+    city String     
+}
+
+entity UserPoste {
+    role String
+    isPrimary Boolean required
+}
+
+entity Notes {
+	description TextBlob
+    createdDate Instant
+}
+
+entity Parameters {
+    identifier String required maxlength(50)
+	description String
+    paramValueString String
+    paramValueInt Integer
+    paramValueDate Instant
+    updatedDate Instant
+}
+
+entity Filelist {
+	label String required maxlength(50)
+    identifier String maxlength(10)
+    description String    
+}
+
+entity FilelistEgagementType {
+	mandatory Boolean
+}
+
+entity Attachment {
+	label String
+    format String required maxlength(32)   
+    createdDate Instant
+    updatedDate Instant
+    version Integer
+    /* docserver_id */
+    path String
+    filename String
+    filesize Integer  
+    validationDate Instant    
+}
+
+
+/* RELATION TYPE */
+relationship OneToOne {      
+    Engagement{currentTask} to Task        
+    Attachment{engagement (subject) required} to Engagement 
+} 
+
+relationship ManyToOne {
+	Sector{scoring (label) required} to Scoring
+  	DowngradingStep{scoring (label) required} to Scoring
+    RejectType{scoring (label) required} to Scoring
+    Engagement{type (label) required} to EngagementType
+    Task{type (label) required} to TaskType
+    Task{processUser(firstName)} to User
+    Task{poste (label) required} to Poste
+    UserPoste{user(firstName) required} to User
+    FilelistEgagementType{engagementType (label)} to EngagementType 
+    Notes{user(firstName) required} to User
+    Downgrading{step (label) required} to DowngradingStep
+    Reject{type (label) required} to RejectType    
+    Engagement{status (label) required} to Status
+    Engagement{decision (label) } to Status
+    Engagement{createdBy(firstName)} to User
+    Action{status (label)} to Status  
+    TasktypeStatusAction{Tasktype (label)} to TaskType
+    TasktypeStatusAction{action (label)} to Action
+    TasktypeStatusAction{status (label)} to Status
+    TaskLog{user (firstName)} to User  
+    TaskLog{action (label)} to Action   
+    TaskLog{task} to Task 
+    TaskLog{engagement (subject)} to Engagement
+    Attachment{user(firstName)} to User
+    Attachment{updatedBy (firstName)} to User
+    Attachment{status (label)} to Status
+}
+
+relationship OneToMany {
+	Engagement{downgrading} to Downgrading{engagement (subject) required}
+    Engagement{reject} to Reject{engagement (subject) required}
+    /*
+    Client{downgrading} to Downgrading{client (nomCli) required}
+    Client{reject} to Reject{client (nomCli) required}*/
+    Client{compte} to  Compte{client (nomCli) required}
+    Client{engagement}	to Engagement{client (nomCli) required}
+    Compte{engagement}	to Engagement{compte (libCpt) required}
+    Engagement{task} to Task{engagement (subject) required }
+    Poste{userPoste} to UserPoste{entities (label) required}   
+    Engagement{note} to Notes{engagement (subject) required}
+    Filelist{filelistEngagementType} to FilelistEgagementType{filelist}       
+}
+
+relationship ManyToMany {
+   Poste{parentPoste (label)} to Poste{child (label)}
+   Attachment{origin (label)} to Attachment{child (label)}
+}
+
+service * with serviceClass 
+paginate * with pagination
+dto * with mapstruct
+filter Engagement
