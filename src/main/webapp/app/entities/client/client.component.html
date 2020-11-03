@@ -1,0 +1,123 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bankLoanManagerApp.client.home.title">Clients</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-client" [routerLink]="['/client/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bankLoanManagerApp.client.home.createLabel">
+            Create a new Client
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="clients?.length === 0">
+        <span jhiTranslate="bankLoanManagerApp.client.home.notFound">No clients found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="clients && clients.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="codBnk"><span jhiTranslate="bankLoanManagerApp.client.codBnk">Cod Bnk</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="codCli"><span jhiTranslate="bankLoanManagerApp.client.codCli">Cod Cli</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nomCli"><span jhiTranslate="bankLoanManagerApp.client.nomCli">Nom Cli</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mendCli"><span jhiTranslate="bankLoanManagerApp.client.mendCli">Mend Cli</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="sfCli"><span jhiTranslate="bankLoanManagerApp.client.sfCli">Sf Cli</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="titre"><span jhiTranslate="bankLoanManagerApp.client.titre">Titre</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="datNai"><span jhiTranslate="bankLoanManagerApp.client.datNai">Dat Nai</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lieuNai"><span jhiTranslate="bankLoanManagerApp.client.lieuNai">Lieu Nai</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="natCli"><span jhiTranslate="bankLoanManagerApp.client.natCli">Nat Cli</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lngCli"><span jhiTranslate="bankLoanManagerApp.client.lngCli">Lng Cli</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="socCli"><span jhiTranslate="bankLoanManagerApp.client.socCli">Soc Cli</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="emploi"><span jhiTranslate="bankLoanManagerApp.client.emploi">Emploi</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="sexe"><span jhiTranslate="bankLoanManagerApp.client.sexe">Sexe</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="numCni"><span jhiTranslate="bankLoanManagerApp.client.numCni">Num Cni</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="datCni"><span jhiTranslate="bankLoanManagerApp.client.datCni">Dat Cni</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="finCni"><span jhiTranslate="bankLoanManagerApp.client.finCni">Fin Cni</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lieuCni"><span jhiTranslate="bankLoanManagerApp.client.lieuCni">Lieu Cni</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="autoCni"><span jhiTranslate="bankLoanManagerApp.client.autoCni">Auto Cni</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="adr"><span jhiTranslate="bankLoanManagerApp.client.adr">Adr</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tel"><span jhiTranslate="bankLoanManagerApp.client.tel">Tel</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="ville"><span jhiTranslate="bankLoanManagerApp.client.ville">Ville</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="site"><span jhiTranslate="bankLoanManagerApp.client.site">Site</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="loc"><span jhiTranslate="bankLoanManagerApp.client.loc">Loc</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="fax"><span jhiTranslate="bankLoanManagerApp.client.fax">Fax</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="agnce"><span jhiTranslate="bankLoanManagerApp.client.agnce">Agnce</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mail"><span jhiTranslate="bankLoanManagerApp.client.mail">Mail</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="pays"><span jhiTranslate="bankLoanManagerApp.client.pays">Pays</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients ;trackBy: trackId">
+                    <td><a [routerLink]="['/client', client.id, 'view']">{{ client.id }}</a></td>
+                    <td>{{ client.codBnk }}</td>
+                    <td>{{ client.codCli }}</td>
+                    <td>{{ client.nomCli }}</td>
+                    <td>{{ client.mendCli }}</td>
+                    <td jhiTranslate="{{ 'bankLoanManagerApp.MaritalStatus.' + client.sfCli }}">{{ client.sfCli }}</td>
+                    <td>{{ client.titre }}</td>
+                    <td>{{ client.datNai }}</td>
+                    <td>{{ client.lieuNai }}</td>
+                    <td>{{ client.natCli }}</td>
+                    <td>{{ client.lngCli }}</td>
+                    <td>{{ client.socCli }}</td>
+                    <td>{{ client.emploi }}</td>
+                    <td jhiTranslate="{{ 'bankLoanManagerApp.Sex.' + client.sexe }}">{{ client.sexe }}</td>
+                    <td>{{ client.numCni }}</td>
+                    <td>{{ client.datCni }}</td>
+                    <td>{{ client.finCni }}</td>
+                    <td>{{ client.lieuCni }}</td>
+                    <td>{{ client.autoCni }}</td>
+                    <td>{{ client.adr }}</td>
+                    <td>{{ client.tel }}</td>
+                    <td>{{ client.ville }}</td>
+                    <td>{{ client.site }}</td>
+                    <td>{{ client.loc }}</td>
+                    <td>{{ client.fax }}</td>
+                    <td>{{ client.agnce }}</td>
+                    <td>{{ client.mail }}</td>
+                    <td>{{ client.pays }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/client', client.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/client', client.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(client)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="clients && clients.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

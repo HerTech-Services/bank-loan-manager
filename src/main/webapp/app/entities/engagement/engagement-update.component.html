@@ -1,0 +1,284 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-engagement-heading" jhiTranslate="bankLoanManagerApp.engagement.home.createOrEditLabel">Create or edit a Engagement</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.scoring" for="field_scoring">Scoring</label>
+                    <input type="number" class="form-control" name="scoring" id="field_scoring"
+                           formControlName="scoring"/>
+                    <div *ngIf="editForm.get('scoring')!.invalid && (editForm.get('scoring')!.dirty || editForm.get('scoring')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('scoring')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('scoring')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('scoring')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.subject" for="field_subject">Subject</label>
+                    <input type="text" class="form-control" name="subject" id="field_subject"
+                           formControlName="subject"/>
+                    <div *ngIf="editForm.get('subject')!.invalid && (editForm.get('subject')!.dirty || editForm.get('subject')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('subject')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.amount" for="field_amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="field_amount"
+                           formControlName="amount"/>
+                    <div *ngIf="editForm.get('amount')!.invalid && (editForm.get('amount')!.dirty || editForm.get('amount')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('amount')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('amount')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.delay" for="field_delay">Delay</label>
+                    <input type="number" class="form-control" name="delay" id="field_delay"
+                           formControlName="delay"/>
+                    <div *ngIf="editForm.get('delay')!.invalid && (editForm.get('delay')!.dirty || editForm.get('delay')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('delay')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('delay')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1 }">
+                            This field should be at least 1.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('delay')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.payment" for="field_payment">Payment</label>
+                    <select class="form-control" name="payment" formControlName="payment" id="field_payment">
+                        <option value="MENSUELLE">{{ 'bankLoanManagerApp.Echeance.MENSUELLE' | translate }}</option>
+                        <option value="TRIMESTRIELLE">{{ 'bankLoanManagerApp.Echeance.TRIMESTRIELLE' | translate }}</option>
+                        <option value="SEMESTRIELLE">{{ 'bankLoanManagerApp.Echeance.SEMESTRIELLE' | translate }}</option>
+                        <option value="ANNUELLE">{{ 'bankLoanManagerApp.Echeance.ANNUELLE' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('payment')!.invalid && (editForm.get('payment')!.dirty || editForm.get('payment')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('payment')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.delayed" for="field_delayed">Delayed</label>
+                    <input type="number" class="form-control" name="delayed" id="field_delayed"
+                           formControlName="delayed"/>
+                    <div *ngIf="editForm.get('delayed')!.invalid && (editForm.get('delayed')!.dirty || editForm.get('delayed')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('delayed')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('delayed')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 0 }">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('delayed')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.reimbursement" for="field_reimbursement">Reimbursement</label>
+                    <select class="form-control" name="reimbursement" formControlName="reimbursement" id="field_reimbursement">
+                        <option value="CONSTANT">{{ 'bankLoanManagerApp.ModeRembourssement.CONSTANT' | translate }}</option>
+                        <option value="DEGRESSIF">{{ 'bankLoanManagerApp.ModeRembourssement.DEGRESSIF' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('reimbursement')!.invalid && (editForm.get('reimbursement')!.dirty || editForm.get('reimbursement')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('reimbursement')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.analyse" for="field_analyse">Analyse</label>
+                    <textarea class="form-control" name="analyse" id="field_analyse"
+                              formControlName="analyse"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.isStop" for="field_isStop">Is Stop</label>
+                    <input type="checkbox" class="form-control" name="isStop" id="field_isStop"
+                           formControlName="isStop"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.isDeleted" for="field_isDeleted">Is Deleted</label>
+                    <input type="checkbox" class="form-control" name="isDeleted" id="field_isDeleted"
+                           formControlName="isDeleted"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.startDate" for="field_startDate">Start Date</label>
+                    <div class="d-flex">
+                        <input id="field_startDate" type="datetime-local" class="form-control" name="startDate" formControlName="startDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.enDate" for="field_enDate">En Date</label>
+                    <div class="d-flex">
+                        <input id="field_enDate" type="datetime-local" class="form-control" name="enDate" formControlName="enDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.updatedDate" for="field_updatedDate">Updated Date</label>
+                    <div class="d-flex">
+                        <input id="field_updatedDate" type="datetime-local" class="form-control" name="updatedDate" formControlName="updatedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.deletedDate" for="field_deletedDate">Deleted Date</label>
+                    <div class="d-flex">
+                        <input id="field_deletedDate" type="datetime-local" class="form-control" name="deletedDate" formControlName="deletedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.stopedDate" for="field_stopedDate">Stoped Date</label>
+                    <div class="d-flex">
+                        <input id="field_stopedDate" type="datetime-local" class="form-control" name="stopedDate" formControlName="stopedDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.currentTask" for="field_currentTask">Current Task</label>
+                    <select class="form-control" id="field_currentTask" name="currentTask" formControlName="currentTaskId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="taskOption.id" *ngFor="let taskOption of currenttasks; trackBy: trackById">{{ taskOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.type" for="field_type">Type</label>
+                    <select class="form-control" id="field_type" name="type" formControlName="typeId">
+                        <option *ngIf="!editForm.get('typeId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="engagementTypeOption.id" *ngFor="let engagementTypeOption of engagementtypes; trackBy: trackById">{{ engagementTypeOption.label }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('typeId')!.invalid && (editForm.get('typeId')!.dirty || editForm.get('typeId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('typeId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.status" for="field_status">Status</label>
+                    <select class="form-control" id="field_status" name="status" formControlName="statusId">
+                        <option *ngIf="!editForm.get('statusId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="statusOption.id" *ngFor="let statusOption of statuses; trackBy: trackById">{{ statusOption.label }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('statusId')!.invalid && (editForm.get('statusId')!.dirty || editForm.get('statusId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('statusId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.decision" for="field_decision">Decision</label>
+                    <select class="form-control" id="field_decision" name="decision" formControlName="decisionId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="statusOption.id" *ngFor="let statusOption of statuses; trackBy: trackById">{{ statusOption.label }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.createdBy" for="field_createdBy">Created By</label>
+                    <select class="form-control" id="field_createdBy" name="createdBy" formControlName="createdById">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.firstName }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.client" for="field_client">Client</label>
+                    <select class="form-control" id="field_client" name="client" formControlName="clientId">
+                        <option *ngIf="!editForm.get('clientId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="clientOption.id" *ngFor="let clientOption of clients; trackBy: trackById">{{ clientOption.nomCli }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('clientId')!.invalid && (editForm.get('clientId')!.dirty || editForm.get('clientId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('clientId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagement.compte" for="field_compte">Compte</label>
+                    <select class="form-control" id="field_compte" name="compte" formControlName="compteId">
+                        <option *ngIf="!editForm.get('compteId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="compteOption.id" *ngFor="let compteOption of comptes; trackBy: trackById">{{ compteOption.libCpt }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('compteId')!.invalid && (editForm.get('compteId')!.dirty || editForm.get('compteId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('compteId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

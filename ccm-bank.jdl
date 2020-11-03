@@ -1,7 +1,7 @@
 /** Model CCM-BANK **/
 entity Scoring {
 	label String required
-	score Integer required min(0)    
+	score Integer required min(0) unique    
 }
 
 entity Sector {
@@ -20,7 +20,7 @@ entity Downgrading {
     interests BigDecimal required min(0)
     penalties BigDecimal required min(0)
     accessories BigDecimal required min(0)
-    description TextBlob
+    description TextBlob required
 }
 
 entity RejectType {

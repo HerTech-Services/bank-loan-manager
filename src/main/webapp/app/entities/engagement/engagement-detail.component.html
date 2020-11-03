@@ -1,0 +1,130 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="engagement">
+            <h2><span jhiTranslate="bankLoanManagerApp.engagement.detail.title">Engagement</span> {{ engagement.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.scoring">Scoring</span></dt>
+                <dd>
+                    <span>{{ engagement.scoring }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.subject">Subject</span></dt>
+                <dd>
+                    <span>{{ engagement.subject }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.amount">Amount</span></dt>
+                <dd>
+                    <span>{{ engagement.amount }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.delay">Delay</span></dt>
+                <dd>
+                    <span>{{ engagement.delay }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.payment">Payment</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'bankLoanManagerApp.Echeance.' + engagement.payment }}">{{ engagement.payment }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.delayed">Delayed</span></dt>
+                <dd>
+                    <span>{{ engagement.delayed }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.reimbursement">Reimbursement</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'bankLoanManagerApp.ModeRembourssement.' + engagement.reimbursement }}">{{ engagement.reimbursement }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.analyse">Analyse</span></dt>
+                <dd>
+                    <span>{{ engagement.analyse }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.isStop">Is Stop</span></dt>
+                <dd>
+                    <span>{{ engagement.isStop }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.isDeleted">Is Deleted</span></dt>
+                <dd>
+                    <span>{{ engagement.isDeleted }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{ engagement.startDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.enDate">En Date</span></dt>
+                <dd>
+                    <span>{{ engagement.enDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{ engagement.createdDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.updatedDate">Updated Date</span></dt>
+                <dd>
+                    <span>{{ engagement.updatedDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.deletedDate">Deleted Date</span></dt>
+                <dd>
+                    <span>{{ engagement.deletedDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.stopedDate">Stoped Date</span></dt>
+                <dd>
+                    <span>{{ engagement.stopedDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.currentTask">Current Task</span></dt>
+                <dd>
+                    <div *ngIf="engagement.currentTaskId">
+                        <a [routerLink]="['/task', engagement.currentTaskId, 'view']">{{ engagement.currentTaskId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="engagement.typeId">
+                        <a [routerLink]="['/engagement-type', engagement.typeId, 'view']">{{ engagement.typeLabel }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.status">Status</span></dt>
+                <dd>
+                    <div *ngIf="engagement.statusId">
+                        <a [routerLink]="['/status', engagement.statusId, 'view']">{{ engagement.statusLabel }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.decision">Decision</span></dt>
+                <dd>
+                    <div *ngIf="engagement.decisionId">
+                        <a [routerLink]="['/status', engagement.decisionId, 'view']">{{ engagement.decisionLabel }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.createdBy">Created By</span></dt>
+                <dd>
+                    {{ engagement.createdByFirstName }}
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.client">Client</span></dt>
+                <dd>
+                    <div *ngIf="engagement.clientId">
+                        <a [routerLink]="['/client', engagement.clientId, 'view']">{{ engagement.clientNomCli }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagement.compte">Compte</span></dt>
+                <dd>
+                    <div *ngIf="engagement.compteId">
+                        <a [routerLink]="['/compte', engagement.compteId, 'view']">{{ engagement.compteLibCpt }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/engagement', engagement.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

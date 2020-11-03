@@ -1,0 +1,109 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bankLoanManagerApp.task.home.title">Tasks</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-task" [routerLink]="['/task/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bankLoanManagerApp.task.home.createLabel">
+            Create a new Task
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="tasks?.length === 0">
+        <span jhiTranslate="bankLoanManagerApp.task.home.notFound">No tasks found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="tasks && tasks.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="sequence"><span jhiTranslate="bankLoanManagerApp.task.sequence">Sequence</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="isSystem"><span jhiTranslate="bankLoanManagerApp.task.isSystem">Is System</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="processDelay"><span jhiTranslate="bankLoanManagerApp.task.processDelay">Process Delay</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="delay1"><span jhiTranslate="bankLoanManagerApp.task.delay1">Delay 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="delay2"><span jhiTranslate="bankLoanManagerApp.task.delay2">Delay 2</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="viewed"><span jhiTranslate="bankLoanManagerApp.task.viewed">Viewed</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdDate"><span jhiTranslate="bankLoanManagerApp.task.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="processDate"><span jhiTranslate="bankLoanManagerApp.task.processDate">Process Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="processComment"><span jhiTranslate="bankLoanManagerApp.task.processComment">Process Comment</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="typeLabel"><span jhiTranslate="bankLoanManagerApp.task.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="processUserFirstName"><span jhiTranslate="bankLoanManagerApp.task.processUser">Process User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="posteLabel"><span jhiTranslate="bankLoanManagerApp.task.poste">Poste</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="engagementSubject"><span jhiTranslate="bankLoanManagerApp.task.engagement">Engagement</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasks ;trackBy: trackId">
+                    <td><a [routerLink]="['/task', task.id, 'view']">{{ task.id }}</a></td>
+                    <td>{{ task.sequence }}</td>
+                    <td>{{ task.isSystem }}</td>
+                    <td>{{ task.processDelay }}</td>
+                    <td>{{ task.delay1 }}</td>
+                    <td>{{ task.delay2 }}</td>
+                    <td>{{ task.viewed }}</td>
+                    <td>{{ task.createdDate | date:'medium' }}</td>
+                    <td>{{ task.processDate | date:'medium' }}</td>
+                    <td>{{ task.processComment }}</td>
+                    <td>
+                        <div *ngIf="task.typeId">
+                            <a [routerLink]="['/task-type', task.typeId , 'view']" >{{ task.typeLabel }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        {{ task.processUserFirstName }}
+                    </td>
+                    <td>
+                        <div *ngIf="task.posteId">
+                            <a [routerLink]="['/poste', task.posteId , 'view']" >{{ task.posteLabel }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="task.engagementId">
+                            <a [routerLink]="['/engagement', task.engagementId , 'view']" >{{ task.engagementSubject }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/task', task.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/task', task.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(task)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="tasks && tasks.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

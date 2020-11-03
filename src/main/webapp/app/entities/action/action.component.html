@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bankLoanManagerApp.action.home.title">Actions</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-action" [routerLink]="['/action/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bankLoanManagerApp.action.home.createLabel">
+            Create a new Action
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="actions?.length === 0">
+        <span jhiTranslate="bankLoanManagerApp.action.home.notFound">No actions found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="actions && actions.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="label"><span jhiTranslate="bankLoanManagerApp.action.label">Label</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="keyword"><span jhiTranslate="bankLoanManagerApp.action.keyword">Keyword</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="isSystem"><span jhiTranslate="bankLoanManagerApp.action.isSystem">Is System</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="actionPage"><span jhiTranslate="bankLoanManagerApp.action.actionPage">Action Page</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="history"><span jhiTranslate="bankLoanManagerApp.action.history">History</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="composant"><span jhiTranslate="bankLoanManagerApp.action.composant">Composant</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="parameters"><span jhiTranslate="bankLoanManagerApp.action.parameters">Parameters</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="statusLabel"><span jhiTranslate="bankLoanManagerApp.action.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let action of actions ;trackBy: trackId">
+                    <td><a [routerLink]="['/action', action.id, 'view']">{{ action.id }}</a></td>
+                    <td>{{ action.label }}</td>
+                    <td>{{ action.keyword }}</td>
+                    <td>{{ action.isSystem }}</td>
+                    <td>{{ action.actionPage }}</td>
+                    <td>{{ action.history }}</td>
+                    <td>{{ action.composant }}</td>
+                    <td>{{ action.parameters }}</td>
+                    <td>
+                        <div *ngIf="action.statusId">
+                            <a [routerLink]="['/status', action.statusId , 'view']" >{{ action.statusLabel }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/action', action.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/action', action.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(action)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="actions && actions.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

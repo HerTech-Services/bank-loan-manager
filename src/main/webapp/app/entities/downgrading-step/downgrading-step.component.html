@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bankLoanManagerApp.downgradingStep.home.title">Downgrading Steps</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-downgrading-step" [routerLink]="['/downgrading-step/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bankLoanManagerApp.downgradingStep.home.createLabel">
+            Create a new Downgrading Step
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="downgradingSteps?.length === 0">
+        <span jhiTranslate="bankLoanManagerApp.downgradingStep.home.notFound">No downgradingSteps found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="downgradingSteps && downgradingSteps.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="label"><span jhiTranslate="bankLoanManagerApp.downgradingStep.label">Label</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="identifier"><span jhiTranslate="bankLoanManagerApp.downgradingStep.identifier">Identifier</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="scoringLabel"><span jhiTranslate="bankLoanManagerApp.downgradingStep.scoring">Scoring</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let downgradingStep of downgradingSteps ;trackBy: trackId">
+                    <td><a [routerLink]="['/downgrading-step', downgradingStep.id, 'view']">{{ downgradingStep.id }}</a></td>
+                    <td>{{ downgradingStep.label }}</td>
+                    <td>{{ downgradingStep.identifier }}</td>
+                    <td>
+                        <div *ngIf="downgradingStep.scoringId">
+                            <a [routerLink]="['/scoring', downgradingStep.scoringId , 'view']" >{{ downgradingStep.scoringLabel }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/downgrading-step', downgradingStep.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/downgrading-step', downgradingStep.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(downgradingStep)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="downgradingSteps && downgradingSteps.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

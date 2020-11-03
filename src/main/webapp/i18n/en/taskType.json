@@ -1,0 +1,24 @@
+{
+  "bankLoanManagerApp": {
+    "taskType": {
+      "home": {
+        "title": "Task Types",
+        "createLabel": "Create a new Task Type",
+        "createOrEditLabel": "Create or edit a Task Type",
+        "notFound": "No Task Types found"
+      },
+      "created": "A new Task Type is created with identifier {{ param }}",
+      "updated": "A Task Type is updated with identifier {{ param }}",
+      "deleted": "A Task Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Task Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Task Type"
+      },
+      "label": "Label",
+      "identifier": "Identifier",
+      "isEnabled": "Is Enabled"
+    }
+  }
+}

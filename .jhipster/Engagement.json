@@ -1,0 +1,173 @@
+{
+  "name": "Engagement",
+  "fields": [
+    {
+      "fieldName": "scoring",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "subject",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "delay",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "payment",
+      "fieldType": "Echeance",
+      "fieldValues": "MENSUELLE,TRIMESTRIELLE,SEMESTRIELLE,ANNUELLE",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "delayed",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "reimbursement",
+      "fieldType": "ModeRembourssement",
+      "fieldValues": "CONSTANT,DEGRESSIF",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "analyse",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "isStop",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isDeleted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "enDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "deletedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "stopedDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "task",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipName": "currentTask",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "downgrading",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipName": "downgrading"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "reject",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipName": "reject"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "task",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipName": "task"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "notes",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipName": "note"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "engagementType",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipValidateRules": "required",
+      "relationshipName": "type",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "status",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipValidateRules": "required",
+      "relationshipName": "status",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "status",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipName": "decision",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipName": "createdBy",
+      "otherEntityField": "firstName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "client",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipValidateRules": "required",
+      "relationshipName": "client",
+      "otherEntityField": "nomCli"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "compte",
+      "otherEntityRelationshipName": "engagement",
+      "relationshipValidateRules": "required",
+      "relationshipName": "compte",
+      "otherEntityField": "libCpt"
+    }
+  ],
+  "changelogDate": "20201102104758",
+  "entityTableName": "engagement",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

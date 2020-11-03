@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="compte">
+            <h2><span jhiTranslate="bankLoanManagerApp.compte.detail.title">Compte</span> {{ compte.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.codBnk">Cod Bnk</span></dt>
+                <dd>
+                    <span>{{ compte.codBnk }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.codCpt">Cod Cpt</span></dt>
+                <dd>
+                    <span>{{ compte.codCpt }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.numCpt">Num Cpt</span></dt>
+                <dd>
+                    <span>{{ compte.numCpt }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.libCpt">Lib Cpt</span></dt>
+                <dd>
+                    <span>{{ compte.libCpt }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.numCpta">Num Cpta</span></dt>
+                <dd>
+                    <span>{{ compte.numCpta }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.numAgc">Num Agc</span></dt>
+                <dd>
+                    <span>{{ compte.numAgc }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.typCpt">Typ Cpt</span></dt>
+                <dd>
+                    <span>{{ compte.typCpt }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.etat">Etat</span></dt>
+                <dd>
+                    <span>{{ compte.etat }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.codCli">Cod Cli</span></dt>
+                <dd>
+                    <span>{{ compte.codCli }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.numCtr">Num Ctr</span></dt>
+                <dd>
+                    <span>{{ compte.numCtr }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.codeFor">Code For</span></dt>
+                <dd>
+                    <span>{{ compte.codeFor }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.compte.client">Client</span></dt>
+                <dd>
+                    <div *ngIf="compte.clientId">
+                        <a [routerLink]="['/client', compte.clientId, 'view']">{{ compte.clientNomCli }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/compte', compte.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

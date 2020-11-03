@@ -1,0 +1,24 @@
+{
+  "bankLoanManagerApp": {
+    "rejectType": {
+      "home": {
+        "title": "RejectTypes",
+        "createLabel": "Créer un nouveau Reject Type",
+        "createOrEditLabel": "Créer ou éditer un Reject Type",
+        "notFound": "Aucun Reject Type trouvé"
+      },
+      "created": "Un nouveau Reject Type a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Reject Type avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Reject Type avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Reject Type {{ id }} ?"
+      },
+      "detail": {
+        "title": "Reject Type"
+      },
+      "label": "Label",
+      "identifier": "Identifier",
+      "scoring": "Scoring"
+    }
+  }
+}

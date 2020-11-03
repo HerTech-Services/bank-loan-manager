@@ -1,0 +1,134 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="client">
+            <h2><span jhiTranslate="bankLoanManagerApp.client.detail.title">Client</span> {{ client.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.client.codBnk">Cod Bnk</span></dt>
+                <dd>
+                    <span>{{ client.codBnk }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.codCli">Cod Cli</span></dt>
+                <dd>
+                    <span>{{ client.codCli }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.nomCli">Nom Cli</span></dt>
+                <dd>
+                    <span>{{ client.nomCli }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.mendCli">Mend Cli</span></dt>
+                <dd>
+                    <span>{{ client.mendCli }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.sfCli">Sf Cli</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'bankLoanManagerApp.MaritalStatus.' + client.sfCli }}">{{ client.sfCli }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.titre">Titre</span></dt>
+                <dd>
+                    <span>{{ client.titre }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.datNai">Dat Nai</span></dt>
+                <dd>
+                    <span>{{ client.datNai }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.lieuNai">Lieu Nai</span></dt>
+                <dd>
+                    <span>{{ client.lieuNai }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.natCli">Nat Cli</span></dt>
+                <dd>
+                    <span>{{ client.natCli }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.lngCli">Lng Cli</span></dt>
+                <dd>
+                    <span>{{ client.lngCli }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.socCli">Soc Cli</span></dt>
+                <dd>
+                    <span>{{ client.socCli }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.emploi">Emploi</span></dt>
+                <dd>
+                    <span>{{ client.emploi }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.sexe">Sexe</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'bankLoanManagerApp.Sex.' + client.sexe }}">{{ client.sexe }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.numCni">Num Cni</span></dt>
+                <dd>
+                    <span>{{ client.numCni }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.datCni">Dat Cni</span></dt>
+                <dd>
+                    <span>{{ client.datCni }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.finCni">Fin Cni</span></dt>
+                <dd>
+                    <span>{{ client.finCni }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.lieuCni">Lieu Cni</span></dt>
+                <dd>
+                    <span>{{ client.lieuCni }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.autoCni">Auto Cni</span></dt>
+                <dd>
+                    <span>{{ client.autoCni }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.adr">Adr</span></dt>
+                <dd>
+                    <span>{{ client.adr }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.tel">Tel</span></dt>
+                <dd>
+                    <span>{{ client.tel }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.ville">Ville</span></dt>
+                <dd>
+                    <span>{{ client.ville }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.site">Site</span></dt>
+                <dd>
+                    <span>{{ client.site }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.loc">Loc</span></dt>
+                <dd>
+                    <span>{{ client.loc }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.fax">Fax</span></dt>
+                <dd>
+                    <span>{{ client.fax }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.agnce">Agnce</span></dt>
+                <dd>
+                    <span>{{ client.agnce }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.mail">Mail</span></dt>
+                <dd>
+                    <span>{{ client.mail }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.client.pays">Pays</span></dt>
+                <dd>
+                    <span>{{ client.pays }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/client', client.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

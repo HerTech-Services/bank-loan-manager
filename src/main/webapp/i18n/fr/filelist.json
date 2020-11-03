@@ -1,0 +1,25 @@
+{
+  "bankLoanManagerApp": {
+    "filelist": {
+      "home": {
+        "title": "Filelists",
+        "createLabel": "Créer un nouveau Filelist",
+        "createOrEditLabel": "Créer ou éditer un Filelist",
+        "notFound": "Aucun Filelist trouvé"
+      },
+      "created": "Un nouveau Filelist a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Filelist avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Filelist avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Filelist {{ id }} ?"
+      },
+      "detail": {
+        "title": "Filelist"
+      },
+      "label": "Label",
+      "identifier": "Identifier",
+      "description": "Description",
+      "filelistEngagementType": "Filelist Engagement Type"
+    }
+  }
+}

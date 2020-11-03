@@ -1,0 +1,25 @@
+{
+  "bankLoanManagerApp": {
+    "userPoste": {
+      "home": {
+        "title": "User Postes",
+        "createLabel": "Create a new User Poste",
+        "createOrEditLabel": "Create or edit a User Poste",
+        "notFound": "No User Postes found"
+      },
+      "created": "A new User Poste is created with identifier {{ param }}",
+      "updated": "A User Poste is updated with identifier {{ param }}",
+      "deleted": "A User Poste is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete User Poste {{ id }}?"
+      },
+      "detail": {
+        "title": "User Poste"
+      },
+      "role": "Role",
+      "isPrimary": "Is Primary",
+      "user": "User",
+      "entities": "Entities"
+    }
+  }
+}

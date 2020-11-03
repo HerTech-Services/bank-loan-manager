@@ -1,0 +1,82 @@
+{
+  "name": "Poste",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "32"
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "shortLabel",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "entity",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "enabled",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "adrs1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adrs2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adrs3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "userPoste",
+      "otherEntityRelationshipName": "entities",
+      "relationshipName": "userPoste"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "poste",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "parentPoste",
+      "otherEntityField": "label",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "poste",
+      "otherEntityRelationshipName": "parentPoste",
+      "relationshipName": "child",
+      "otherEntityField": "label",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201102105658",
+  "entityTableName": "poste",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

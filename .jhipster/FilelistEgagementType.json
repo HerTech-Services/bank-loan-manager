@@ -1,0 +1,36 @@
+{
+  "name": "FilelistEgagementType",
+  "fields": [
+    {
+      "fieldName": "mandatory",
+      "fieldType": "Boolean"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "engagementType",
+      "otherEntityRelationshipName": "filelistEgagementType",
+      "relationshipName": "engagementType",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "filelist",
+      "otherEntityRelationshipName": "filelistEngagementType",
+      "relationshipName": "filelist",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201102110158",
+  "entityTableName": "filelist_egagement_type",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

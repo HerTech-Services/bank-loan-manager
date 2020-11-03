@@ -1,0 +1,182 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-task-heading" jhiTranslate="bankLoanManagerApp.task.home.createOrEditLabel">Create or edit a Task</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.sequence" for="field_sequence">Sequence</label>
+                    <input type="number" class="form-control" name="sequence" id="field_sequence"
+                           formControlName="sequence"/>
+                    <div *ngIf="editForm.get('sequence')!.invalid && (editForm.get('sequence')!.dirty || editForm.get('sequence')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('sequence')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('sequence')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1 }">
+                            This field should be at least 1.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('sequence')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.isSystem" for="field_isSystem">Is System</label>
+                    <input type="checkbox" class="form-control" name="isSystem" id="field_isSystem"
+                           formControlName="isSystem"/>
+                    <div *ngIf="editForm.get('isSystem')!.invalid && (editForm.get('isSystem')!.dirty || editForm.get('isSystem')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('isSystem')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.processDelay" for="field_processDelay">Process Delay</label>
+                    <input type="number" class="form-control" name="processDelay" id="field_processDelay"
+                           formControlName="processDelay"/>
+                    <div *ngIf="editForm.get('processDelay')!.invalid && (editForm.get('processDelay')!.dirty || editForm.get('processDelay')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('processDelay')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('processDelay')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.delay1" for="field_delay1">Delay 1</label>
+                    <input type="number" class="form-control" name="delay1" id="field_delay1"
+                           formControlName="delay1"/>
+                    <div *ngIf="editForm.get('delay1')!.invalid && (editForm.get('delay1')!.dirty || editForm.get('delay1')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('delay1')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('delay1')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.delay2" for="field_delay2">Delay 2</label>
+                    <input type="number" class="form-control" name="delay2" id="field_delay2"
+                           formControlName="delay2"/>
+                    <div *ngIf="editForm.get('delay2')!.invalid && (editForm.get('delay2')!.dirty || editForm.get('delay2')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('delay2')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('delay2')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.viewed" for="field_viewed">Viewed</label>
+                    <input type="number" class="form-control" name="viewed" id="field_viewed"
+                           formControlName="viewed"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.processDate" for="field_processDate">Process Date</label>
+                    <div class="d-flex">
+                        <input id="field_processDate" type="datetime-local" class="form-control" name="processDate" formControlName="processDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.processComment" for="field_processComment">Process Comment</label>
+                    <textarea class="form-control" name="processComment" id="field_processComment"
+                              formControlName="processComment"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.type" for="field_type">Type</label>
+                    <select class="form-control" id="field_type" name="type" formControlName="typeId">
+                        <option *ngIf="!editForm.get('typeId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="taskTypeOption.id" *ngFor="let taskTypeOption of tasktypes; trackBy: trackById">{{ taskTypeOption.label }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('typeId')!.invalid && (editForm.get('typeId')!.dirty || editForm.get('typeId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('typeId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.processUser" for="field_processUser">Process User</label>
+                    <select class="form-control" id="field_processUser" name="processUser" formControlName="processUserId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.firstName }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.poste" for="field_poste">Poste</label>
+                    <select class="form-control" id="field_poste" name="poste" formControlName="posteId">
+                        <option *ngIf="!editForm.get('posteId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="posteOption.id" *ngFor="let posteOption of postes; trackBy: trackById">{{ posteOption.label }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('posteId')!.invalid && (editForm.get('posteId')!.dirty || editForm.get('posteId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('posteId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.task.engagement" for="field_engagement">Engagement</label>
+                    <select class="form-control" id="field_engagement" name="engagement" formControlName="engagementId">
+                        <option *ngIf="!editForm.get('engagementId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="engagementOption.id" *ngFor="let engagementOption of engagements; trackBy: trackById">{{ engagementOption.subject }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('engagementId')!.invalid && (editForm.get('engagementId')!.dirty || editForm.get('engagementId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('engagementId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

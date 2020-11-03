@@ -1,0 +1,92 @@
+{
+  "name": "Task",
+  "fields": [
+    {
+      "fieldName": "sequence",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "isSystem",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "processDelay",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "delay1",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "delay2",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "viewed",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "processDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "processComment",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "taskType",
+      "otherEntityRelationshipName": "task",
+      "relationshipValidateRules": "required",
+      "relationshipName": "type",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "task",
+      "relationshipName": "processUser",
+      "otherEntityField": "firstName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "poste",
+      "otherEntityRelationshipName": "task",
+      "relationshipValidateRules": "required",
+      "relationshipName": "poste",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "engagement",
+      "otherEntityRelationshipName": "task",
+      "relationshipValidateRules": "required",
+      "relationshipName": "engagement",
+      "otherEntityField": "subject"
+    }
+  ],
+  "changelogDate": "20201102105058",
+  "entityTableName": "task",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

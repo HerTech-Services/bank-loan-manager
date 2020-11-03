@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userPoste">
+            <h2><span jhiTranslate="bankLoanManagerApp.userPoste.detail.title">User Poste</span> {{ userPoste.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.userPoste.role">Role</span></dt>
+                <dd>
+                    <span>{{ userPoste.role }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.userPoste.isPrimary">Is Primary</span></dt>
+                <dd>
+                    <span>{{ userPoste.isPrimary }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.userPoste.user">User</span></dt>
+                <dd>
+                    {{ userPoste.userFirstName }}
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.userPoste.entities">Entities</span></dt>
+                <dd>
+                    <div *ngIf="userPoste.entitiesId">
+                        <a [routerLink]="['/poste', userPoste.entitiesId, 'view']">{{ userPoste.entitiesLabel }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-poste', userPoste.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

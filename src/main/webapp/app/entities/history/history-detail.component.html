@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="history">
+            <h2><span jhiTranslate="bankLoanManagerApp.history.detail.title">History</span> {{ history.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.history.tableName">Table Name</span></dt>
+                <dd>
+                    <span>{{ history.tableName }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.history.recordId">Record Id</span></dt>
+                <dd>
+                    <span>{{ history.recordId }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.history.eventType">Event Type</span></dt>
+                <dd>
+                    <span>{{ history.eventType }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.history.eventDate">Event Date</span></dt>
+                <dd>
+                    <span>{{ history.eventDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.history.info">Info</span></dt>
+                <dd>
+                    <span>{{ history.info }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.history.host">Host</span></dt>
+                <dd>
+                    <span>{{ history.host }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.history.properties">Properties</span></dt>
+                <dd>
+                    <span>{{ history.properties }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/history', history.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

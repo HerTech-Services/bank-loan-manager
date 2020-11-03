@@ -1,0 +1,24 @@
+{
+  "bankLoanManagerApp": {
+    "filelistEgagementType": {
+      "home": {
+        "title": "Filelist Egagement Types",
+        "createLabel": "Create a new Filelist Egagement Type",
+        "createOrEditLabel": "Create or edit a Filelist Egagement Type",
+        "notFound": "No Filelist Egagement Types found"
+      },
+      "created": "A new Filelist Egagement Type is created with identifier {{ param }}",
+      "updated": "A Filelist Egagement Type is updated with identifier {{ param }}",
+      "deleted": "A Filelist Egagement Type is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Filelist Egagement Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Filelist Egagement Type"
+      },
+      "mandatory": "Mandatory",
+      "engagementType": "Engagement Type",
+      "filelist": "Filelist"
+    }
+  }
+}

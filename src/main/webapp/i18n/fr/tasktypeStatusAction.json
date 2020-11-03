@@ -1,0 +1,24 @@
+{
+  "bankLoanManagerApp": {
+    "tasktypeStatusAction": {
+      "home": {
+        "title": "TasktypeStatusActions",
+        "createLabel": "Créer un nouveau Tasktype Status Action",
+        "createOrEditLabel": "Créer ou éditer un Tasktype Status Action",
+        "notFound": "Aucun Tasktype Status Action trouvé"
+      },
+      "created": "Un nouveau Tasktype Status Action a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Tasktype Status Action avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Tasktype Status Action avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Tasktype Status Action {{ id }} ?"
+      },
+      "detail": {
+        "title": "Tasktype Status Action"
+      },
+      "tasktype": "Tasktype",
+      "action": "Action",
+      "status": "Status"
+    }
+  }
+}

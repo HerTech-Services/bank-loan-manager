@@ -1,0 +1,11 @@
+{
+  "bankLoanManagerApp": {
+    "Echeance": {
+      "null": "",
+      "MENSUELLE": "MENSUELLE",
+      "TRIMESTRIELLE": "TRIMESTRIELLE",
+      "SEMESTRIELLE": "SEMESTRIELLE",
+      "ANNUELLE": "ANNUELLE"
+    }
+  }
+}

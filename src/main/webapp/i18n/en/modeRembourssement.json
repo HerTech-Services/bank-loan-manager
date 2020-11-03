@@ -1,0 +1,9 @@
+{
+  "bankLoanManagerApp": {
+    "ModeRembourssement": {
+      "null": "",
+      "CONSTANT": "CONSTANT",
+      "DEGRESSIF": "DEGRESSIF"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bankLoanManagerApp.filelistEgagementType.home.title">Filelist Egagement Types</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-filelist-egagement-type" [routerLink]="['/filelist-egagement-type/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bankLoanManagerApp.filelistEgagementType.home.createLabel">
+            Create a new Filelist Egagement Type
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="filelistEgagementTypes?.length === 0">
+        <span jhiTranslate="bankLoanManagerApp.filelistEgagementType.home.notFound">No filelistEgagementTypes found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="filelistEgagementTypes && filelistEgagementTypes.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mandatory"><span jhiTranslate="bankLoanManagerApp.filelistEgagementType.mandatory">Mandatory</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="engagementTypeLabel"><span jhiTranslate="bankLoanManagerApp.filelistEgagementType.engagementType">Engagement Type</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="filelistId"><span jhiTranslate="bankLoanManagerApp.filelistEgagementType.filelist">Filelist</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let filelistEgagementType of filelistEgagementTypes ;trackBy: trackId">
+                    <td><a [routerLink]="['/filelist-egagement-type', filelistEgagementType.id, 'view']">{{ filelistEgagementType.id }}</a></td>
+                    <td>{{ filelistEgagementType.mandatory }}</td>
+                    <td>
+                        <div *ngIf="filelistEgagementType.engagementTypeId">
+                            <a [routerLink]="['/engagement-type', filelistEgagementType.engagementTypeId , 'view']" >{{ filelistEgagementType.engagementTypeLabel }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="filelistEgagementType.filelistId">
+                            <a [routerLink]="['/filelist', filelistEgagementType.filelistId , 'view']" >{{ filelistEgagementType.filelistId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/filelist-egagement-type', filelistEgagementType.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/filelist-egagement-type', filelistEgagementType.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(filelistEgagementType)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="filelistEgagementTypes && filelistEgagementTypes.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

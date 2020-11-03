@@ -1,0 +1,33 @@
+{
+  "bankLoanManagerApp": {
+    "poste": {
+      "home": {
+        "title": "Postes",
+        "createLabel": "Create a new Poste",
+        "createOrEditLabel": "Create or edit a Poste",
+        "notFound": "No Postes found"
+      },
+      "created": "A new Poste is created with identifier {{ param }}",
+      "updated": "A Poste is updated with identifier {{ param }}",
+      "deleted": "A Poste is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Poste {{ id }}?"
+      },
+      "detail": {
+        "title": "Poste"
+      },
+      "code": "Code",
+      "label": "Label",
+      "shortLabel": "Short Label",
+      "entity": "Entity",
+      "enabled": "Enabled",
+      "adrs1": "Adrs 1",
+      "adrs2": "Adrs 2",
+      "adrs3": "Adrs 3",
+      "city": "City",
+      "userPoste": "User Poste",
+      "parentPoste": "Parent Poste",
+      "child": "Child"
+    }
+  }
+}

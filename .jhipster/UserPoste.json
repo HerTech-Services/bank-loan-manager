@@ -1,0 +1,43 @@
+{
+  "name": "UserPoste",
+  "fields": [
+    {
+      "fieldName": "role",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isPrimary",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "userPoste",
+      "relationshipValidateRules": "required",
+      "relationshipName": "user",
+      "otherEntityField": "firstName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "poste",
+      "otherEntityRelationshipName": "userPoste",
+      "relationshipValidateRules": "required",
+      "relationshipName": "entities",
+      "otherEntityField": "label"
+    }
+  ],
+  "changelogDate": "20201102105758",
+  "entityTableName": "user_poste",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

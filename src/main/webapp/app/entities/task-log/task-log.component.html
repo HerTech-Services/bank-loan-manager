@@ -1,0 +1,99 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bankLoanManagerApp.taskLog.home.title">Task Logs</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-task-log" [routerLink]="['/task-log/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bankLoanManagerApp.taskLog.home.createLabel">
+            Create a new Task Log
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="taskLogs?.length === 0">
+        <span jhiTranslate="bankLoanManagerApp.taskLog.home.notFound">No taskLogs found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="taskLogs && taskLogs.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="comment"><span jhiTranslate="bankLoanManagerApp.taskLog.comment">Comment</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdDate"><span jhiTranslate="bankLoanManagerApp.taskLog.createdDate">Created Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="taskProperties"><span jhiTranslate="bankLoanManagerApp.taskLog.taskProperties">Task Properties</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="engagementProperties"><span jhiTranslate="bankLoanManagerApp.taskLog.engagementProperties">Engagement Properties</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userFirstName"><span jhiTranslate="bankLoanManagerApp.taskLog.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="actionLabel"><span jhiTranslate="bankLoanManagerApp.taskLog.action">Action</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="taskId"><span jhiTranslate="bankLoanManagerApp.taskLog.task">Task</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="engagementSubject"><span jhiTranslate="bankLoanManagerApp.taskLog.engagement">Engagement</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let taskLog of taskLogs ;trackBy: trackId">
+                    <td><a [routerLink]="['/task-log', taskLog.id, 'view']">{{ taskLog.id }}</a></td>
+                    <td>{{ taskLog.comment }}</td>
+                    <td>{{ taskLog.createdDate | date:'medium' }}</td>
+                    <td>{{ taskLog.taskProperties }}</td>
+                    <td>{{ taskLog.engagementProperties }}</td>
+                    <td>
+                        {{ taskLog.userFirstName }}
+                    </td>
+                    <td>
+                        <div *ngIf="taskLog.actionId">
+                            <a [routerLink]="['/action', taskLog.actionId , 'view']" >{{ taskLog.actionLabel }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="taskLog.taskId">
+                            <a [routerLink]="['/task', taskLog.taskId , 'view']" >{{ taskLog.taskId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="taskLog.engagementId">
+                            <a [routerLink]="['/engagement', taskLog.engagementId , 'view']" >{{ taskLog.engagementSubject }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/task-log', taskLog.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/task-log', taskLog.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(taskLog)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="taskLogs && taskLogs.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

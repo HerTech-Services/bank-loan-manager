@@ -1,0 +1,50 @@
+{
+  "bankLoanManagerApp": {
+    "client": {
+      "home": {
+        "title": "Clients",
+        "createLabel": "Créer un nouveau Client",
+        "createOrEditLabel": "Créer ou éditer un Client",
+        "notFound": "Aucun Client trouvé"
+      },
+      "created": "Un nouveau Client a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Client avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Client avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Client {{ id }} ?"
+      },
+      "detail": {
+        "title": "Client"
+      },
+      "codBnk": "Cod Bnk",
+      "codCli": "Cod Cli",
+      "nomCli": "Nom Cli",
+      "mendCli": "Mend Cli",
+      "sfCli": "Sf Cli",
+      "titre": "Titre",
+      "datNai": "Dat Nai",
+      "lieuNai": "Lieu Nai",
+      "natCli": "Nat Cli",
+      "lngCli": "Lng Cli",
+      "socCli": "Soc Cli",
+      "emploi": "Emploi",
+      "sexe": "Sexe",
+      "numCni": "Num Cni",
+      "datCni": "Dat Cni",
+      "finCni": "Fin Cni",
+      "lieuCni": "Lieu Cni",
+      "autoCni": "Auto Cni",
+      "adr": "Adr",
+      "tel": "Tel",
+      "ville": "Ville",
+      "site": "Site",
+      "loc": "Loc",
+      "fax": "Fax",
+      "agnce": "Agnce",
+      "mail": "Mail",
+      "pays": "Pays",
+      "compte": "Compte",
+      "engagement": "Engagement"
+    }
+  }
+}

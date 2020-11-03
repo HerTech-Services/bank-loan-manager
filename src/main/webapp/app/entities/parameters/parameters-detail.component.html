@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="parameters">
+            <h2><span jhiTranslate="bankLoanManagerApp.parameters.detail.title">Parameters</span> {{ parameters.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.parameters.identifier">Identifier</span></dt>
+                <dd>
+                    <span>{{ parameters.identifier }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.parameters.description">Description</span></dt>
+                <dd>
+                    <span>{{ parameters.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.parameters.paramValueString">Param Value String</span></dt>
+                <dd>
+                    <span>{{ parameters.paramValueString }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.parameters.paramValueInt">Param Value Int</span></dt>
+                <dd>
+                    <span>{{ parameters.paramValueInt }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.parameters.paramValueDate">Param Value Date</span></dt>
+                <dd>
+                    <span>{{ parameters.paramValueDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.parameters.updatedDate">Updated Date</span></dt>
+                <dd>
+                    <span>{{ parameters.updatedDate }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/parameters', parameters.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

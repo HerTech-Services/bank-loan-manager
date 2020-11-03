@@ -1,0 +1,38 @@
+{
+  "name": "TasktypeStatusAction",
+  "fields": [],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "taskType",
+      "otherEntityRelationshipName": "tasktypeStatusAction",
+      "relationshipName": "tasktype",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "action",
+      "otherEntityRelationshipName": "tasktypeStatusAction",
+      "relationshipName": "action",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "status",
+      "otherEntityRelationshipName": "tasktypeStatusAction",
+      "relationshipName": "status",
+      "otherEntityField": "label"
+    }
+  ],
+  "changelogDate": "20201102105358",
+  "entityTableName": "tasktype_status_action",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

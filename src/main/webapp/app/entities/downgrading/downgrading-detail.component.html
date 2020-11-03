@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="downgrading">
+            <h2><span jhiTranslate="bankLoanManagerApp.downgrading.detail.title">Downgrading</span> {{ downgrading.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.downgrading.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{ downgrading.createdDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.downgrading.capital">Capital</span></dt>
+                <dd>
+                    <span>{{ downgrading.capital }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.downgrading.interests">Interests</span></dt>
+                <dd>
+                    <span>{{ downgrading.interests }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.downgrading.penalties">Penalties</span></dt>
+                <dd>
+                    <span>{{ downgrading.penalties }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.downgrading.accessories">Accessories</span></dt>
+                <dd>
+                    <span>{{ downgrading.accessories }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.downgrading.description">Description</span></dt>
+                <dd>
+                    <span>{{ downgrading.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.downgrading.step">Step</span></dt>
+                <dd>
+                    <div *ngIf="downgrading.stepId">
+                        <a [routerLink]="['/downgrading-step', downgrading.stepId, 'view']">{{ downgrading.stepLabel }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.downgrading.engagement">Engagement</span></dt>
+                <dd>
+                    <div *ngIf="downgrading.engagementId">
+                        <a [routerLink]="['/engagement', downgrading.engagementId, 'view']">{{ downgrading.engagementSubject }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/downgrading', downgrading.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

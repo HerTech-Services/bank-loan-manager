@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="poste">
+            <h2><span jhiTranslate="bankLoanManagerApp.poste.detail.title">Poste</span> {{ poste.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.code">Code</span></dt>
+                <dd>
+                    <span>{{ poste.code }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.label">Label</span></dt>
+                <dd>
+                    <span>{{ poste.label }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.shortLabel">Short Label</span></dt>
+                <dd>
+                    <span>{{ poste.shortLabel }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.entity">Entity</span></dt>
+                <dd>
+                    <span>{{ poste.entity }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.enabled">Enabled</span></dt>
+                <dd>
+                    <span>{{ poste.enabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.adrs1">Adrs 1</span></dt>
+                <dd>
+                    <span>{{ poste.adrs1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.adrs2">Adrs 2</span></dt>
+                <dd>
+                    <span>{{ poste.adrs2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.adrs3">Adrs 3</span></dt>
+                <dd>
+                    <span>{{ poste.adrs3 }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.city">City</span></dt>
+                <dd>
+                    <span>{{ poste.city }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.poste.parentPoste">Parent Poste</span></dt>
+                <dd>
+                    <span *ngFor="let parentPoste of poste.parentPostes; let last = last">
+                        <a [routerLink]="['/poste', parentPoste?.id, 'view']">{{ parentPoste.label }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/poste', poste.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{
+  "bankLoanManagerApp": {
+    "reject": {
+      "home": {
+        "title": "Rejects",
+        "createLabel": "Créer un nouveau Reject",
+        "createOrEditLabel": "Créer ou éditer un Reject",
+        "notFound": "Aucun Reject trouvé"
+      },
+      "created": "Un nouveau Reject a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Reject avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Reject avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Reject {{ id }} ?"
+      },
+      "detail": {
+        "title": "Reject"
+      },
+      "createdDate": "Created Date",
+      "capital": "Capital",
+      "interests": "Interests",
+      "penalties": "Penalties",
+      "accessories": "Accessories",
+      "description": "Description",
+      "type": "Type",
+      "engagement": "Engagement"
+    }
+  }
+}

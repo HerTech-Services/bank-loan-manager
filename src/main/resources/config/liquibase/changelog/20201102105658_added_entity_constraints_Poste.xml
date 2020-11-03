@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Poste.
+    -->
+    <changeSet id="20201102105658-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="poste_id"
+                                 baseTableName="poste_parent_poste"
+                                 constraintName="fk_poste_parent_poste_poste_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="poste"/>
+
+        <addForeignKeyConstraint baseColumnNames="parent_poste_id"
+                                 baseTableName="poste_parent_poste"
+                                 constraintName="fk_poste_parent_poste_parent_poste_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="poste"/>
+        
+    </changeSet>
+</databaseChangeLog>

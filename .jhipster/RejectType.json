@@ -1,0 +1,37 @@
+{
+  "name": "RejectType",
+  "fields": [
+    {
+      "fieldName": "label",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "identifier",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "32"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "scoring",
+      "otherEntityRelationshipName": "rejectType",
+      "relationshipValidateRules": "required",
+      "relationshipName": "scoring",
+      "otherEntityField": "label"
+    }
+  ],
+  "changelogDate": "20201102104358",
+  "entityTableName": "reject_type",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

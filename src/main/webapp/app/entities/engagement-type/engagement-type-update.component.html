@@ -1,0 +1,98 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-engagement-type-heading" jhiTranslate="bankLoanManagerApp.engagementType.home.createOrEditLabel">Create or edit a Engagement Type</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagementType.label" for="field_label">Label</label>
+                    <input type="text" class="form-control" name="label" id="field_label"
+                           formControlName="label"/>
+                    <div *ngIf="editForm.get('label')!.invalid && (editForm.get('label')!.dirty || editForm.get('label')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('label')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagementType.isEnabled" for="field_isEnabled">Is Enabled</label>
+                    <input type="checkbox" class="form-control" name="isEnabled" id="field_isEnabled"
+                           formControlName="isEnabled"/>
+                    <div *ngIf="editForm.get('isEnabled')!.invalid && (editForm.get('isEnabled')!.dirty || editForm.get('isEnabled')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('isEnabled')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagementType.processDelay" for="field_processDelay">Process Delay</label>
+                    <input type="number" class="form-control" name="processDelay" id="field_processDelay"
+                           formControlName="processDelay"/>
+                    <div *ngIf="editForm.get('processDelay')!.invalid && (editForm.get('processDelay')!.dirty || editForm.get('processDelay')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('processDelay')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('processDelay')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagementType.delay1" for="field_delay1">Delay 1</label>
+                    <input type="number" class="form-control" name="delay1" id="field_delay1"
+                           formControlName="delay1"/>
+                    <div *ngIf="editForm.get('delay1')!.invalid && (editForm.get('delay1')!.dirty || editForm.get('delay1')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('delay1')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('delay1')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.engagementType.delay2" for="field_delay2">Delay 2</label>
+                    <input type="number" class="form-control" name="delay2" id="field_delay2"
+                           formControlName="delay2"/>
+                    <div *ngIf="editForm.get('delay2')!.invalid && (editForm.get('delay2')!.dirty || editForm.get('delay2')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('delay2')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('delay2')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

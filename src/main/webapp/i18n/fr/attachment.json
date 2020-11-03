@@ -1,0 +1,36 @@
+{
+  "bankLoanManagerApp": {
+    "attachment": {
+      "home": {
+        "title": "Attachments",
+        "createLabel": "Créer un nouveau Attachment",
+        "createOrEditLabel": "Créer ou éditer un Attachment",
+        "notFound": "Aucun Attachment trouvé"
+      },
+      "created": "Un nouveau Attachment a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Attachment avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Attachment avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Attachment {{ id }} ?"
+      },
+      "detail": {
+        "title": "Attachment"
+      },
+      "label": "Label",
+      "format": "Format",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "version": "Version",
+      "path": "Path",
+      "filename": "Filename",
+      "filesize": "Filesize",
+      "validationDate": "Validation Date",
+      "engagement": "Engagement",
+      "user": "User",
+      "updatedBy": "Updated By",
+      "status": "Status",
+      "origin": "Origin",
+      "child": "Child"
+    }
+  }
+}
