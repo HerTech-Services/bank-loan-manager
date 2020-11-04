@@ -84,6 +84,7 @@ public class CacheConfiguration {
             createCache(cm, tect.her.ccm.domain.Attachment.class.getName());
             createCache(cm, tect.her.ccm.domain.Attachment.class.getName() + ".origins");
             createCache(cm, tect.her.ccm.domain.Attachment.class.getName() + ".children");
+            createCache(cm, tect.her.ccm.domain.UserExtra.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

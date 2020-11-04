@@ -100,8 +100,8 @@ entity Engagement {
     analyse TextBlob     
     isStop Boolean
     isDeleted Boolean
-    startDate Instant
-    enDate Instant
+    startDate LocalDate
+    enDate LocalDate
     createdDate Instant
     updatedDate Instant
     deletedDate Instant
@@ -149,6 +149,7 @@ entity Task {
 entity TaskType {
 	label String required
     identifier String required maxlength(50)
+    delay Integer 
     isEnabled Boolean
 }
 

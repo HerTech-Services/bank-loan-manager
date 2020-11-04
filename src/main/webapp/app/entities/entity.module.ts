@@ -102,6 +102,10 @@ import { RouterModule } from '@angular/router';
         path: 'attachment',
         loadChildren: () => import('./attachment/attachment.module').then(m => m.BankLoanManagerAttachmentModule),
       },
+      {
+        path: 'user-extra',
+        loadChildren: () => import('./user-extra/user-extra.module').then(m => m.BankLoanManagerUserExtraModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

@@ -38,6 +38,7 @@
     <include file="config/liquibase/changelog/20201102110058_added_entity_Filelist.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201102110158_added_entity_FilelistEgagementType.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201102110258_added_entity_Attachment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104052833_added_entity_UserExtra.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20201102104058_added_entity_constraints_Sector.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201102104158_added_entity_constraints_DowngradingStep.xml" relativeToChangelogFile="false"/>
@@ -55,6 +56,7 @@
     <include file="config/liquibase/changelog/20201102105858_added_entity_constraints_Notes.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201102110158_added_entity_constraints_FilelistEgagementType.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201102110258_added_entity_constraints_Attachment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104052833_added_entity_constraints_UserExtra.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>
