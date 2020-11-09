@@ -1,11 +1,11 @@
 /** Model CCM-BANK **/
 entity Scoring {
 	label String required
-	score Integer required min(0) unique    
+	score Integer required min(0) unique
 }
 
 entity Sector {
-	label String required  
+	label String required
     identifier String maxlength(32) unique
 }
 
@@ -25,7 +25,7 @@ entity Downgrading {
 
 entity RejectType {
 	label String required
-    identifier String maxlength(32) unique   
+    identifier String maxlength(32) unique
 }
 
 entity Reject {
@@ -39,7 +39,7 @@ entity Reject {
 
 entity Client {
 	codBnk String maxlength(4)
-    codCli String maxlength(7)   
+    codCli String maxlength(7)
     nomCli String
     mendCli String
     sfCli MaritalStatus
@@ -97,21 +97,21 @@ entity Compte {
     numAgc String maxlength(3)
     typCpt String maxlength(4)
     etat String maxlength(4)
-    codCli String maxlength(7) 
+    codCli String maxlength(7)
     numCtr String maxlength(50)
     codeFor String maxlength(50)
 }
 
 entity Engagement {
-    identifier String maxlength(32) unique  
-	scoring String required 
+    identifier String maxlength(32) unique
+	scoring String required
 	subject String required
     amount BigDecimal required
     delay Integer required min(1)
     payment Echeance required
     delayed Integer required min(0)
     reimbursement ModeRembourssement required
-    analyse TextBlob     
+    analyse TextBlob
     isStop Boolean
     isDeleted Boolean
     startDate LocalDate
@@ -119,8 +119,8 @@ entity Engagement {
     createdDate Instant
     updatedDate Instant
     deletedDate Instant
-    stopedDate Instant  
-    submissionDate LocalDate  
+    stopedDate Instant
+    submissionDate LocalDate
 }
 
 enum Echeance {
@@ -145,15 +145,15 @@ entity Status {
     imgFilename String
     canBeSearched Boolean required
     canBeModified Boolean required
-    isEnabled Boolean required    
+    isEnabled Boolean required
 }
 
-entity Task {	
+entity Task {
     sequence Integer required min(1)
     isSystem Boolean required
     processDelay Integer required
-    delay1 Integer 
-    delay2 Integer 
+    delay1 Integer
+    delay2 Integer
     viewed Integer
     createdDate Instant
     processDate Instant
@@ -164,7 +164,7 @@ entity Task {
 entity TaskType {
 	label String required
     identifier String required maxlength(50)
-    delay Integer 
+    delay Integer
     isEnabled Boolean
 }
 
@@ -180,7 +180,7 @@ entity Action {
 }
 
 entity TasktypeStatusAction{
-	
+
 }
 
 entity TaskLog {
@@ -190,20 +190,10 @@ entity TaskLog {
     engagementProperties TextBlob
 }
 
-entity History {
-	tableName String required maxlength(50)
-    recordId String required
-    eventType String
-    eventDate Instant
-    info String
-	host String required maxlength(50)
-    properties TextBlob
-}
-
 entity TypeEntite {
     identifier String required maxlength(32) unique
     label String required unique
-    shortLabel String maxlength(50)   
+    shortLabel String maxlength(50)
 }
 
 entity Entite {
@@ -214,13 +204,13 @@ entity Entite {
     isEnabled Boolean required
     adrs1 String
     adrs2 String
-    adrs3 String   
+    adrs3 String
     zipcode String
-    city String     
+    city String
     country String
     email String
     parameters TextBlob
-    parentId String maxlength(32) unique    
+    parentId String maxlength(32) unique
 }
 
 entity EmployeEntite {
@@ -248,7 +238,7 @@ entity Parameters {
 entity Filelist {
 	label String required maxlength(50)
     identifier String maxlength(10)
-    description String    
+    description String
 }
 
 entity FilelistEgagementType {
@@ -257,24 +247,24 @@ entity FilelistEgagementType {
 
 entity Attachment {
 	label String
-    format String required maxlength(32)   
+    format String required maxlength(32)
     createdDate Instant
     updatedDate Instant
     version Integer
     /* docserver_id */
     path String
     filename String
-    filesize Integer  
-    validationDate Instant    
+    filesize Integer
+    validationDate Instant
 }
 
 
 /* RELATION TYPE */
-relationship OneToOne {    
+relationship OneToOne {
     Employe{user (login)} to User
-    Engagement{currentTask} to Task        
-    Attachment{engagement (subject) required} to Engagement 
-} 
+    Engagement{currentTask} to Task
+    Attachment{engagement (subject) required} to Engagement
+}
 
 relationship ManyToOne {
 	Sector{scoring (label) required} to Scoring
@@ -285,20 +275,20 @@ relationship ManyToOne {
     Task{assignee(login) required} to User
     /*  Task{assignee (nomEmp) required} to Employe */
     EmployeEntite{employe(nomEmp) required} to Employe
-    FilelistEgagementType{engagementType (label)} to EngagementType 
+    FilelistEgagementType{engagementType (label)} to EngagementType
     Notes{user(firstName) required} to User
     Downgrading{step (label) required} to DowngradingStep
-    Reject{type (label) required} to RejectType    
+    Reject{type (label) required} to RejectType
     Engagement{status (label) required} to Status
     Engagement{decision (label) } to Status
     Engagement{createdBy(firstName)} to User
-    Action{status (label)} to Status  
+    Action{status (label)} to Status
     TasktypeStatusAction{Tasktype (label)} to TaskType
     TasktypeStatusAction{action (label)} to Action
     TasktypeStatusAction{status (label)} to Status
-    TaskLog{user (firstName)} to User  
-    TaskLog{action (label)} to Action   
-    TaskLog{task} to Task 
+    TaskLog{user (firstName)} to User
+    TaskLog{action (label)} to Action
+    TaskLog{task} to Task
     TaskLog{engagement (subject)} to Engagement
     Attachment{user(firstName)} to User
     Attachment{updatedBy (firstName)} to User
@@ -315,9 +305,9 @@ relationship OneToMany {
     Client{engagement}	to Engagement{client (nomCli) required}
     Compte{engagement}	to Engagement{compte (libCpt) required}
     Engagement{task} to Task{engagement (subject) required }
-    Employe{employeEntite} to EmployeEntite{employe (nomEmp) required}   
+    Entite{employeEntite} to EmployeEntite{entite (label) required}
     Engagement{note} to Notes{engagement (subject) required}
-    Filelist{filelistEngagementType} to FilelistEgagementType{filelist}       
+    Filelist{filelistEngagementType} to FilelistEgagementType{filelist}
 }
 
 relationship ManyToMany {
@@ -325,7 +315,7 @@ relationship ManyToMany {
    Attachment{origin (label)} to Attachment{child (label)}
 }
 
-service * with serviceClass 
+service * with serviceClass
 paginate * with pagination
 dto * with mapstruct
 filter Engagement, Employe, Client, Downgrading, Reject
