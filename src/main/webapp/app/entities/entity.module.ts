@@ -1,9 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { DashboardComponent } from 'app/entities/dashboard/dashboard.component';
+import { navbarRoute } from 'app/layouts/navbar/navbar.route';
+import { Authority } from 'app/shared/constants/authority.constants';
+import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
+const LAYOUT_ROUTES = [navbarRoute];
 @NgModule({
   imports: [
     RouterModule.forChild([
+      {
+        path: '',
+        redirectTo: 'dashboard',
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        data: {
+          authorities: [Authority.USER],
+          pageTitle: 'home.title',
+        },
+        canActivate: [UserRouteAccessService],
+      },
       {
         path: 'scoring',
         loadChildren: () => import('./scoring/scoring.module').then(m => m.BankLoanManagerScoringModule),
@@ -107,6 +124,7 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./attachment/attachment.module').then(m => m.BankLoanManagerAttachmentModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
+      ...LAYOUT_ROUTES,
     ]),
   ],
 })
