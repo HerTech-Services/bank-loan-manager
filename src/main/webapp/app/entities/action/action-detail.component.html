@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="action">
+            <h2><span jhiTranslate="bankLoanManagerApp.action.detail.title">Action</span> {{ action.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.action.label">Label</span></dt>
+                <dd>
+                    <span>{{ action.label }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.action.keyword">Keyword</span></dt>
+                <dd>
+                    <span>{{ action.keyword }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.action.isSystem">Is System</span></dt>
+                <dd>
+                    <span>{{ action.isSystem }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.action.actionPage">Action Page</span></dt>
+                <dd>
+                    <span>{{ action.actionPage }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.action.history">History</span></dt>
+                <dd>
+                    <span>{{ action.history }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.action.composant">Composant</span></dt>
+                <dd>
+                    <span>{{ action.composant }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.action.parameters">Parameters</span></dt>
+                <dd>
+                    <span>{{ action.parameters }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.action.status">Status</span></dt>
+                <dd>
+                    <div *ngIf="action.statusId">
+                        <a [routerLink]="['/status', action.statusId, 'view']">{{ action.statusLabel }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/action', action.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

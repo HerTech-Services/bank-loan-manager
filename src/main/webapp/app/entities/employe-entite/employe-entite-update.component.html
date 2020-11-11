@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-employe-entite-heading" jhiTranslate="bankLoanManagerApp.employeEntite.home.createOrEditLabel">Create or edit a Employe Entite</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.employeEntite.role" for="field_role">Role</label>
+                    <input type="text" class="form-control" name="role" id="field_role"
+                           formControlName="role"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.employeEntite.isPrimary" for="field_isPrimary">Is Primary</label>
+                    <input type="checkbox" class="form-control" name="isPrimary" id="field_isPrimary"
+                           formControlName="isPrimary"/>
+                    <div *ngIf="editForm.get('isPrimary')!.invalid && (editForm.get('isPrimary')!.dirty || editForm.get('isPrimary')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('isPrimary')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.employeEntite.isChief" for="field_isChief">Is Chief</label>
+                    <input type="checkbox" class="form-control" name="isChief" id="field_isChief"
+                           formControlName="isChief"/>
+                    <div *ngIf="editForm.get('isChief')!.invalid && (editForm.get('isChief')!.dirty || editForm.get('isChief')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('isChief')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.employeEntite.employe" for="field_employe">Employe</label>
+                    <select class="form-control" id="field_employe" name="employe" formControlName="employeId">
+                        <option *ngIf="!editForm.get('employeId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="employeOption.id" *ngFor="let employeOption of employes; trackBy: trackById">{{ employeOption.nomEmp }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('employeId')!.invalid && (editForm.get('employeId')!.dirty || editForm.get('employeId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('employeId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.employeEntite.entite" for="field_entite">Entite</label>
+                    <select class="form-control" id="field_entite" name="entite" formControlName="entiteId">
+                        <option *ngIf="!editForm.get('entiteId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="entiteOption.id" *ngFor="let entiteOption of entites; trackBy: trackById">{{ entiteOption.label }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('entiteId')!.invalid && (editForm.get('entiteId')!.dirty || editForm.get('entiteId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('entiteId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-tasktype-status-action-heading" jhiTranslate="bankLoanManagerApp.tasktypeStatusAction.home.createOrEditLabel">Create or edit a Tasktype Status Action</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.tasktypeStatusAction.tasktype" for="field_tasktype">Tasktype</label>
+                    <select class="form-control" id="field_tasktype" name="tasktype" formControlName="tasktypeId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="taskTypeOption.id" *ngFor="let taskTypeOption of tasktypes; trackBy: trackById">{{ taskTypeOption.label }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.tasktypeStatusAction.action" for="field_action">Action</label>
+                    <select class="form-control" id="field_action" name="action" formControlName="actionId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="actionOption.id" *ngFor="let actionOption of actions; trackBy: trackById">{{ actionOption.label }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.tasktypeStatusAction.status" for="field_status">Status</label>
+                    <select class="form-control" id="field_status" name="status" formControlName="statusId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="statusOption.id" *ngFor="let statusOption of statuses; trackBy: trackById">{{ statusOption.label }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+  "bankLoanManagerApp": {
+    "MaritalStatus": {
+      "null": "",
+      "CELIBATIRE": "C",
+      "MARIE": "M",
+      "VEUF": "V",
+      "DIVORCE": "D"
+    }
+  }
+}

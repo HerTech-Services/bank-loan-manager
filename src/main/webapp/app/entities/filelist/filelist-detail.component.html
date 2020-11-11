@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="filelist">
+            <h2><span jhiTranslate="bankLoanManagerApp.filelist.detail.title">Filelist</span> {{ filelist.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.filelist.label">Label</span></dt>
+                <dd>
+                    <span>{{ filelist.label }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.filelist.identifier">Identifier</span></dt>
+                <dd>
+                    <span>{{ filelist.identifier }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.filelist.description">Description</span></dt>
+                <dd>
+                    <span>{{ filelist.description }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/filelist', filelist.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

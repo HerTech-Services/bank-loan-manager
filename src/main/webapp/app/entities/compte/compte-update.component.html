@@ -1,0 +1,172 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-compte-heading" jhiTranslate="bankLoanManagerApp.compte.home.createOrEditLabel">Create or edit a Compte</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.codBnk" for="field_codBnk">Cod Bnk</label>
+                    <input type="text" class="form-control" name="codBnk" id="field_codBnk"
+                           formControlName="codBnk"/>
+                    <div *ngIf="editForm.get('codBnk')!.invalid && (editForm.get('codBnk')!.dirty || editForm.get('codBnk')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codBnk')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 4 }">
+                        This field cannot be longer than 4 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.codCpt" for="field_codCpt">Cod Cpt</label>
+                    <input type="text" class="form-control" name="codCpt" id="field_codCpt"
+                           formControlName="codCpt"/>
+                    <div *ngIf="editForm.get('codCpt')!.invalid && (editForm.get('codCpt')!.dirty || editForm.get('codCpt')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codCpt')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
+                        This field cannot be longer than 15 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.numCpt" for="field_numCpt">Num Cpt</label>
+                    <input type="text" class="form-control" name="numCpt" id="field_numCpt"
+                           formControlName="numCpt"/>
+                    <div *ngIf="editForm.get('numCpt')!.invalid && (editForm.get('numCpt')!.dirty || editForm.get('numCpt')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numCpt')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
+                        This field cannot be longer than 15 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.libCpt" for="field_libCpt">Lib Cpt</label>
+                    <input type="text" class="form-control" name="libCpt" id="field_libCpt"
+                           formControlName="libCpt"/>
+                    <div *ngIf="editForm.get('libCpt')!.invalid && (editForm.get('libCpt')!.dirty || editForm.get('libCpt')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('libCpt')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 20 }">
+                        This field cannot be longer than 20 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.numCpta" for="field_numCpta">Num Cpta</label>
+                    <input type="text" class="form-control" name="numCpta" id="field_numCpta"
+                           formControlName="numCpta"/>
+                    <div *ngIf="editForm.get('numCpta')!.invalid && (editForm.get('numCpta')!.dirty || editForm.get('numCpta')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numCpta')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 15 }">
+                        This field cannot be longer than 15 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.numAgc" for="field_numAgc">Num Agc</label>
+                    <input type="text" class="form-control" name="numAgc" id="field_numAgc"
+                           formControlName="numAgc"/>
+                    <div *ngIf="editForm.get('numAgc')!.invalid && (editForm.get('numAgc')!.dirty || editForm.get('numAgc')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numAgc')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 3 }">
+                        This field cannot be longer than 3 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.typCpt" for="field_typCpt">Typ Cpt</label>
+                    <input type="text" class="form-control" name="typCpt" id="field_typCpt"
+                           formControlName="typCpt"/>
+                    <div *ngIf="editForm.get('typCpt')!.invalid && (editForm.get('typCpt')!.dirty || editForm.get('typCpt')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('typCpt')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 4 }">
+                        This field cannot be longer than 4 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.etat" for="field_etat">Etat</label>
+                    <input type="text" class="form-control" name="etat" id="field_etat"
+                           formControlName="etat"/>
+                    <div *ngIf="editForm.get('etat')!.invalid && (editForm.get('etat')!.dirty || editForm.get('etat')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('etat')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 4 }">
+                        This field cannot be longer than 4 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.codCli" for="field_codCli">Cod Cli</label>
+                    <input type="text" class="form-control" name="codCli" id="field_codCli"
+                           formControlName="codCli"/>
+                    <div *ngIf="editForm.get('codCli')!.invalid && (editForm.get('codCli')!.dirty || editForm.get('codCli')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codCli')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 7 }">
+                        This field cannot be longer than 7 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.numCtr" for="field_numCtr">Num Ctr</label>
+                    <input type="text" class="form-control" name="numCtr" id="field_numCtr"
+                           formControlName="numCtr"/>
+                    <div *ngIf="editForm.get('numCtr')!.invalid && (editForm.get('numCtr')!.dirty || editForm.get('numCtr')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('numCtr')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.codeFor" for="field_codeFor">Code For</label>
+                    <input type="text" class="form-control" name="codeFor" id="field_codeFor"
+                           formControlName="codeFor"/>
+                    <div *ngIf="editForm.get('codeFor')!.invalid && (editForm.get('codeFor')!.dirty || editForm.get('codeFor')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('codeFor')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.compte.client" for="field_client">Client</label>
+                    <select class="form-control" id="field_client" name="client" formControlName="clientId">
+                        <option *ngIf="!editForm.get('clientId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="clientOption.id" *ngFor="let clientOption of clients; trackBy: trackById">{{ clientOption.nomCli }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('clientId')!.invalid && (editForm.get('clientId')!.dirty || editForm.get('clientId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('clientId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

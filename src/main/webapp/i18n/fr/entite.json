@@ -1,0 +1,36 @@
+{
+  "bankLoanManagerApp": {
+    "entite": {
+      "home": {
+        "title": "Entites",
+        "createLabel": "Créer un nouveau Entite",
+        "createOrEditLabel": "Créer ou éditer un Entite",
+        "notFound": "Aucun Entite trouvé"
+      },
+      "created": "Un nouveau Entite a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Entite avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Entite avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Entite {{ id }} ?"
+      },
+      "detail": {
+        "title": "Entite"
+      },
+      "identifier": "Identifier",
+      "label": "Label",
+      "shortLabel": "Short Label",
+      "parent": "Parent",
+      "isEnabled": "Is Enabled",
+      "adrs1": "Adrs 1",
+      "adrs2": "Adrs 2",
+      "adrs3": "Adrs 3",
+      "zipcode": "Zipcode",
+      "city": "City",
+      "country": "Country",
+      "email": "Email",
+      "parameters": "Parameters",
+      "parentId": "Parent Id",
+      "employeEntite": "Employe Entite"
+    }
+  }
+}

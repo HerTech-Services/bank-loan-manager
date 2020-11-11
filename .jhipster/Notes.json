@@ -1,0 +1,43 @@
+{
+  "name": "Notes",
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "notes",
+      "relationshipValidateRules": "required",
+      "relationshipName": "user",
+      "otherEntityField": "firstName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "engagement",
+      "otherEntityRelationshipName": "note",
+      "relationshipValidateRules": "required",
+      "relationshipName": "engagement",
+      "otherEntityField": "subject"
+    }
+  ],
+  "changelogDate": "20201109095400",
+  "entityTableName": "notes",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

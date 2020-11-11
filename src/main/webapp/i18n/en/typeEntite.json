@@ -1,0 +1,24 @@
+{
+  "bankLoanManagerApp": {
+    "typeEntite": {
+      "home": {
+        "title": "Type Entites",
+        "createLabel": "Create a new Type Entite",
+        "createOrEditLabel": "Create or edit a Type Entite",
+        "notFound": "No Type Entites found"
+      },
+      "created": "A new Type Entite is created with identifier {{ param }}",
+      "updated": "A Type Entite is updated with identifier {{ param }}",
+      "deleted": "A Type Entite is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Type Entite {{ id }}?"
+      },
+      "detail": {
+        "title": "Type Entite"
+      },
+      "identifier": "Identifier",
+      "label": "Label",
+      "shortLabel": "Short Label"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="employeEntite">
+            <h2><span jhiTranslate="bankLoanManagerApp.employeEntite.detail.title">Employe Entite</span> {{ employeEntite.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.employeEntite.role">Role</span></dt>
+                <dd>
+                    <span>{{ employeEntite.role }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employeEntite.isPrimary">Is Primary</span></dt>
+                <dd>
+                    <span>{{ employeEntite.isPrimary }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employeEntite.isChief">Is Chief</span></dt>
+                <dd>
+                    <span>{{ employeEntite.isChief }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employeEntite.employe">Employe</span></dt>
+                <dd>
+                    <div *ngIf="employeEntite.employeId">
+                        <a [routerLink]="['/employe', employeEntite.employeId, 'view']">{{ employeEntite.employeNomEmp }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employeEntite.entite">Entite</span></dt>
+                <dd>
+                    <div *ngIf="employeEntite.entiteId">
+                        <a [routerLink]="['/entite', employeEntite.entiteId, 'view']">{{ employeEntite.entiteLabel }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/employe-entite', employeEntite.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

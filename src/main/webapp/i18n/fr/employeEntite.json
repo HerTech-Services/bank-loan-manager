@@ -1,0 +1,26 @@
+{
+  "bankLoanManagerApp": {
+    "employeEntite": {
+      "home": {
+        "title": "EmployeEntites",
+        "createLabel": "Créer un nouveau Employe Entite",
+        "createOrEditLabel": "Créer ou éditer un Employe Entite",
+        "notFound": "Aucun Employe Entite trouvé"
+      },
+      "created": "Un nouveau Employe Entite a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Employe Entite avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Employe Entite avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Employe Entite {{ id }} ?"
+      },
+      "detail": {
+        "title": "Employe Entite"
+      },
+      "role": "Role",
+      "isPrimary": "Is Primary",
+      "isChief": "Is Chief",
+      "employe": "Employe",
+      "entite": "Entite"
+    }
+  }
+}

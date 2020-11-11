@@ -1,0 +1,29 @@
+{
+  "bankLoanManagerApp": {
+    "action": {
+      "home": {
+        "title": "Actions",
+        "createLabel": "Create a new Action",
+        "createOrEditLabel": "Create or edit a Action",
+        "notFound": "No Actions found"
+      },
+      "created": "A new Action is created with identifier {{ param }}",
+      "updated": "A Action is updated with identifier {{ param }}",
+      "deleted": "A Action is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Action {{ id }}?"
+      },
+      "detail": {
+        "title": "Action"
+      },
+      "label": "Label",
+      "keyword": "Keyword",
+      "isSystem": "Is System",
+      "actionPage": "Action Page",
+      "history": "History",
+      "composant": "Composant",
+      "parameters": "Parameters",
+      "status": "Status"
+    }
+  }
+}

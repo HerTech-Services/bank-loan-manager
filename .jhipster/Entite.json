@@ -1,0 +1,89 @@
+{
+  "name": "Entite",
+  "fields": [
+    {
+      "fieldName": "identifier",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "32"
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "shortLabel",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "parent",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "isEnabled",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "adrs1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adrs2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adrs3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "zipcode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "city",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "parameters",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "parentId",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "unique"],
+      "fieldValidateRulesMaxlength": "32"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "employeEntite",
+      "otherEntityRelationshipName": "entite",
+      "relationshipName": "employeEntite"
+    }
+  ],
+  "changelogDate": "20201109095200",
+  "entityTableName": "entite",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

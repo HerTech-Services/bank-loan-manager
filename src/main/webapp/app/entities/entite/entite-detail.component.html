@@ -1,0 +1,82 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="entite">
+            <h2><span jhiTranslate="bankLoanManagerApp.entite.detail.title">Entite</span> {{ entite.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.identifier">Identifier</span></dt>
+                <dd>
+                    <span>{{ entite.identifier }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.label">Label</span></dt>
+                <dd>
+                    <span>{{ entite.label }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.shortLabel">Short Label</span></dt>
+                <dd>
+                    <span>{{ entite.shortLabel }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.parent">Parent</span></dt>
+                <dd>
+                    <span>{{ entite.parent }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.isEnabled">Is Enabled</span></dt>
+                <dd>
+                    <span>{{ entite.isEnabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.adrs1">Adrs 1</span></dt>
+                <dd>
+                    <span>{{ entite.adrs1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.adrs2">Adrs 2</span></dt>
+                <dd>
+                    <span>{{ entite.adrs2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.adrs3">Adrs 3</span></dt>
+                <dd>
+                    <span>{{ entite.adrs3 }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.zipcode">Zipcode</span></dt>
+                <dd>
+                    <span>{{ entite.zipcode }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.city">City</span></dt>
+                <dd>
+                    <span>{{ entite.city }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.country">Country</span></dt>
+                <dd>
+                    <span>{{ entite.country }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.email">Email</span></dt>
+                <dd>
+                    <span>{{ entite.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.parameters">Parameters</span></dt>
+                <dd>
+                    <span>{{ entite.parameters }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.entite.parentId">Parent Id</span></dt>
+                <dd>
+                    <span>{{ entite.parentId }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/entite', entite.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

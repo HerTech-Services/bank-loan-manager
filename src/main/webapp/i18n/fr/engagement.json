@@ -1,0 +1,50 @@
+{
+  "bankLoanManagerApp": {
+    "engagement": {
+      "home": {
+        "title": "Engagements",
+        "createLabel": "Créer un nouveau Engagement",
+        "createOrEditLabel": "Créer ou éditer un Engagement",
+        "notFound": "Aucun Engagement trouvé"
+      },
+      "created": "Un nouveau Engagement a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Engagement avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Engagement avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Engagement {{ id }} ?"
+      },
+      "detail": {
+        "title": "Engagement"
+      },
+      "identifier": "Identifier",
+      "scoring": "Scoring",
+      "subject": "Subject",
+      "amount": "Amount",
+      "delay": "Delay",
+      "payment": "Payment",
+      "delayed": "Delayed",
+      "reimbursement": "Reimbursement",
+      "analyse": "Analyse",
+      "isStop": "Is Stop",
+      "isDeleted": "Is Deleted",
+      "startDate": "Start Date",
+      "enDate": "En Date",
+      "createdDate": "Created Date",
+      "updatedDate": "Updated Date",
+      "deletedDate": "Deleted Date",
+      "stopedDate": "Stoped Date",
+      "submissionDate": "Submission Date",
+      "currentTask": "Current Task",
+      "downgrading": "Downgrading",
+      "reject": "Reject",
+      "task": "Task",
+      "note": "Note",
+      "type": "Type",
+      "status": "Status",
+      "decision": "Decision",
+      "createdBy": "Created By",
+      "client": "Client",
+      "compte": "Compte"
+    }
+  }
+}

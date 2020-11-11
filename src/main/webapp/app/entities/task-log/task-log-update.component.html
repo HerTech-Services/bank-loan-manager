@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-task-log-heading" jhiTranslate="bankLoanManagerApp.taskLog.home.createOrEditLabel">Create or edit a Task Log</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.taskLog.comment" for="field_comment">Comment</label>
+                    <input type="text" class="form-control" name="comment" id="field_comment"
+                           formControlName="comment"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.taskLog.createdDate" for="field_createdDate">Created Date</label>
+                    <div class="d-flex">
+                        <input id="field_createdDate" type="datetime-local" class="form-control" name="createdDate" formControlName="createdDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.taskLog.taskProperties" for="field_taskProperties">Task Properties</label>
+                    <textarea class="form-control" name="taskProperties" id="field_taskProperties"
+                              formControlName="taskProperties"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.taskLog.engagementProperties" for="field_engagementProperties">Engagement Properties</label>
+                    <textarea class="form-control" name="engagementProperties" id="field_engagementProperties"
+                              formControlName="engagementProperties"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.taskLog.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="userId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.firstName }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.taskLog.action" for="field_action">Action</label>
+                    <select class="form-control" id="field_action" name="action" formControlName="actionId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="actionOption.id" *ngFor="let actionOption of actions; trackBy: trackById">{{ actionOption.label }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.taskLog.task" for="field_task">Task</label>
+                    <select class="form-control" id="field_task" name="task" formControlName="taskId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="taskOption.id" *ngFor="let taskOption of tasks; trackBy: trackById">{{ taskOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.taskLog.engagement" for="field_engagement">Engagement</label>
+                    <select class="form-control" id="field_engagement" name="engagement" formControlName="engagementId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="engagementOption.id" *ngFor="let engagementOption of engagements; trackBy: trackById">{{ engagementOption.subject }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="task">
+            <h2><span jhiTranslate="bankLoanManagerApp.task.detail.title">Task</span> {{ task.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.task.sequence">Sequence</span></dt>
+                <dd>
+                    <span>{{ task.sequence }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.isSystem">Is System</span></dt>
+                <dd>
+                    <span>{{ task.isSystem }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.processDelay">Process Delay</span></dt>
+                <dd>
+                    <span>{{ task.processDelay }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.delay1">Delay 1</span></dt>
+                <dd>
+                    <span>{{ task.delay1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.delay2">Delay 2</span></dt>
+                <dd>
+                    <span>{{ task.delay2 }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.viewed">Viewed</span></dt>
+                <dd>
+                    <span>{{ task.viewed }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{ task.createdDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.processDate">Process Date</span></dt>
+                <dd>
+                    <span>{{ task.processDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.processComment">Process Comment</span></dt>
+                <dd>
+                    <span>{{ task.processComment }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="task.typeId">
+                        <a [routerLink]="['/task-type', task.typeId, 'view']">{{ task.typeLabel }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.assignee">Assignee</span></dt>
+                <dd>
+                    {{ task.assigneeLogin }}
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.task.engagement">Engagement</span></dt>
+                <dd>
+                    <div *ngIf="task.engagementId">
+                        <a [routerLink]="['/engagement', task.engagementId, 'view']">{{ task.engagementSubject }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/task', task.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

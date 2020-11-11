@@ -1,0 +1,29 @@
+{
+  "bankLoanManagerApp": {
+    "taskLog": {
+      "home": {
+        "title": "TaskLogs",
+        "createLabel": "Créer un nouveau Task Log",
+        "createOrEditLabel": "Créer ou éditer un Task Log",
+        "notFound": "Aucun Task Log trouvé"
+      },
+      "created": "Un nouveau Task Log a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Task Log avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Task Log avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Task Log {{ id }} ?"
+      },
+      "detail": {
+        "title": "Task Log"
+      },
+      "comment": "Comment",
+      "createdDate": "Created Date",
+      "taskProperties": "Task Properties",
+      "engagementProperties": "Engagement Properties",
+      "user": "User",
+      "action": "Action",
+      "task": "Task",
+      "engagement": "Engagement"
+    }
+  }
+}

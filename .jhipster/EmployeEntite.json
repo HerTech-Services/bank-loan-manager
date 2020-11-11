@@ -1,0 +1,48 @@
+{
+  "name": "EmployeEntite",
+  "fields": [
+    {
+      "fieldName": "role",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isPrimary",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "isChief",
+      "fieldType": "Boolean",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "employe",
+      "otherEntityRelationshipName": "employeEntite",
+      "relationshipValidateRules": "required",
+      "relationshipName": "employe",
+      "otherEntityField": "nomEmp"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "entite",
+      "otherEntityRelationshipName": "employeEntite",
+      "relationshipValidateRules": "required",
+      "relationshipName": "entite",
+      "otherEntityField": "label"
+    }
+  ],
+  "changelogDate": "20201109095300",
+  "entityTableName": "employe_entite",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

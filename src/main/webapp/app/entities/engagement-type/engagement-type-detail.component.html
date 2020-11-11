@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="engagementType">
+            <h2><span jhiTranslate="bankLoanManagerApp.engagementType.detail.title">Engagement Type</span> {{ engagementType.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.engagementType.label">Label</span></dt>
+                <dd>
+                    <span>{{ engagementType.label }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagementType.isEnabled">Is Enabled</span></dt>
+                <dd>
+                    <span>{{ engagementType.isEnabled }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagementType.processDelay">Process Delay</span></dt>
+                <dd>
+                    <span>{{ engagementType.processDelay }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagementType.delay1">Delay 1</span></dt>
+                <dd>
+                    <span>{{ engagementType.delay1 }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.engagementType.delay2">Delay 2</span></dt>
+                <dd>
+                    <span>{{ engagementType.delay2 }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/engagement-type', engagementType.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

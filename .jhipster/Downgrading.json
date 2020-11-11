@@ -1,0 +1,69 @@
+{
+  "name": "Downgrading",
+  "fields": [
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "capital",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "interests",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "penalties",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "accessories",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "downgradingStep",
+      "otherEntityRelationshipName": "downgrading",
+      "relationshipValidateRules": "required",
+      "relationshipName": "step",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "engagement",
+      "otherEntityRelationshipName": "downgrading",
+      "relationshipValidateRules": "required",
+      "relationshipName": "engagement",
+      "otherEntityField": "subject"
+    }
+  ],
+  "changelogDate": "20201109093700",
+  "entityTableName": "downgrading",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

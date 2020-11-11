@@ -1,0 +1,29 @@
+{
+  "bankLoanManagerApp": {
+    "downgrading": {
+      "home": {
+        "title": "Downgradings",
+        "createLabel": "Créer un nouveau Downgrading",
+        "createOrEditLabel": "Créer ou éditer un Downgrading",
+        "notFound": "Aucun Downgrading trouvé"
+      },
+      "created": "Un nouveau Downgrading a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Downgrading avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Downgrading avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Downgrading {{ id }} ?"
+      },
+      "detail": {
+        "title": "Downgrading"
+      },
+      "createdDate": "Created Date",
+      "capital": "Capital",
+      "interests": "Interests",
+      "penalties": "Penalties",
+      "accessories": "Accessories",
+      "description": "Description",
+      "step": "Step",
+      "engagement": "Engagement"
+    }
+  }
+}

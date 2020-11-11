@@ -1,0 +1,26 @@
+{
+  "bankLoanManagerApp": {
+    "engagementType": {
+      "home": {
+        "title": "EngagementTypes",
+        "createLabel": "Créer un nouveau Engagement Type",
+        "createOrEditLabel": "Créer ou éditer un Engagement Type",
+        "notFound": "Aucun Engagement Type trouvé"
+      },
+      "created": "Un nouveau Engagement Type a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Engagement Type avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Engagement Type avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Engagement Type {{ id }} ?"
+      },
+      "detail": {
+        "title": "Engagement Type"
+      },
+      "label": "Label",
+      "isEnabled": "Is Enabled",
+      "processDelay": "Process Delay",
+      "delay1": "Delay 1",
+      "delay2": "Delay 2"
+    }
+  }
+}

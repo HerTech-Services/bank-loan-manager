@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Attachment.
+    -->
+    <changeSet id="20201109095800-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="engagement_id"
+                                 baseTableName="attachment"
+                                 constraintName="fk_attachment_engagement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="engagement"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="attachment"
+                                 constraintName="fk_attachment_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="updated_by_id"
+                                 baseTableName="attachment"
+                                 constraintName="fk_attachment_updated_by_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="attachment"
+                                 constraintName="fk_attachment_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="status"/>
+
+        <addForeignKeyConstraint baseColumnNames="attachment_id"
+                                 baseTableName="attachment_origin"
+                                 constraintName="fk_attachment_origin_attachment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="attachment"/>
+
+        <addForeignKeyConstraint baseColumnNames="origin_id"
+                                 baseTableName="attachment_origin"
+                                 constraintName="fk_attachment_origin_origin_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="attachment"/>
+        
+    </changeSet>
+</databaseChangeLog>

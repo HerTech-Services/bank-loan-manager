@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity Engagement.
+    -->
+    <changeSet id="20201109094300-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="current_task_id"
+                                 baseTableName="engagement"
+                                 constraintName="fk_engagement_current_task_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="task"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_id"
+                                 baseTableName="engagement"
+                                 constraintName="fk_engagement_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="engagement_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="engagement"
+                                 constraintName="fk_engagement_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="status"/>
+
+        <addForeignKeyConstraint baseColumnNames="decision_id"
+                                 baseTableName="engagement"
+                                 constraintName="fk_engagement_decision_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="status"/>
+
+        <addForeignKeyConstraint baseColumnNames="created_by_id"
+                                 baseTableName="engagement"
+                                 constraintName="fk_engagement_created_by_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="client_id"
+                                 baseTableName="engagement"
+                                 constraintName="fk_engagement_client_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="client"/>
+
+        <addForeignKeyConstraint baseColumnNames="compte_id"
+                                 baseTableName="engagement"
+                                 constraintName="fk_engagement_compte_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="compte"/>
+
+    </changeSet>
+</databaseChangeLog>

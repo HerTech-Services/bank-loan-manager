@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="reject">
+            <h2><span jhiTranslate="bankLoanManagerApp.reject.detail.title">Reject</span> {{ reject.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.reject.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{ reject.createdDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.reject.capital">Capital</span></dt>
+                <dd>
+                    <span>{{ reject.capital }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.reject.interests">Interests</span></dt>
+                <dd>
+                    <span>{{ reject.interests }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.reject.penalties">Penalties</span></dt>
+                <dd>
+                    <span>{{ reject.penalties }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.reject.accessories">Accessories</span></dt>
+                <dd>
+                    <span>{{ reject.accessories }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.reject.description">Description</span></dt>
+                <dd>
+                    <span>{{ reject.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.reject.type">Type</span></dt>
+                <dd>
+                    <div *ngIf="reject.typeId">
+                        <a [routerLink]="['/reject-type', reject.typeId, 'view']">{{ reject.typeLabel }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.reject.engagement">Engagement</span></dt>
+                <dd>
+                    <div *ngIf="reject.engagementId">
+                        <a [routerLink]="['/engagement', reject.engagementId, 'view']">{{ reject.engagementSubject }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/reject', reject.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

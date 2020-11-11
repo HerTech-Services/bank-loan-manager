@@ -4,6 +4,7 @@ import { Router, ActivatedRouteSnapshot, NavigationEnd, NavigationError } from '
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 import { AccountService } from 'app/core/auth/account.service';
+import { LogService } from 'app/log.service';
 
 @Component({
   selector: 'jhi-main',
@@ -17,14 +18,18 @@ export class MainComponent implements OnInit {
     private titleService: Title,
     private router: Router,
     private translateService: TranslateService,
-    rootRenderer: RendererFactory2
+    rootRenderer: RendererFactory2,
+    private logService: LogService
   ) {
     this.renderer = rootRenderer.createRenderer(document.querySelector('html'), null);
   }
 
   ngOnInit(): void {
     // try to log in automatically
-    this.accountService.identity().subscribe();
+    this.accountService.identity().subscribe(account => {
+      this.logService.log(account);
+      this.router.navigate(['/account/login']);
+    });
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {

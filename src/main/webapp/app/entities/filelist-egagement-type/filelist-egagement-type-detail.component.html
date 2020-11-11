@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="filelistEgagementType">
+            <h2><span jhiTranslate="bankLoanManagerApp.filelistEgagementType.detail.title">Filelist Egagement Type</span> {{ filelistEgagementType.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.filelistEgagementType.mandatory">Mandatory</span></dt>
+                <dd>
+                    <span>{{ filelistEgagementType.mandatory }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.filelistEgagementType.engagementType">Engagement Type</span></dt>
+                <dd>
+                    <div *ngIf="filelistEgagementType.engagementTypeId">
+                        <a [routerLink]="['/engagement-type', filelistEgagementType.engagementTypeId, 'view']">{{ filelistEgagementType.engagementTypeLabel }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.filelistEgagementType.filelist">Filelist</span></dt>
+                <dd>
+                    <div *ngIf="filelistEgagementType.filelistId">
+                        <a [routerLink]="['/filelist', filelistEgagementType.filelistId, 'view']">{{ filelistEgagementType.filelistId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/filelist-egagement-type', filelistEgagementType.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

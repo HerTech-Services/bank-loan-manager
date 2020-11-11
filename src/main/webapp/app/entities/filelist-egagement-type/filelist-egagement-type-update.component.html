@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-filelist-egagement-type-heading" jhiTranslate="bankLoanManagerApp.filelistEgagementType.home.createOrEditLabel">Create or edit a Filelist Egagement Type</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.filelistEgagementType.mandatory" for="field_mandatory">Mandatory</label>
+                    <input type="checkbox" class="form-control" name="mandatory" id="field_mandatory"
+                           formControlName="mandatory"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.filelistEgagementType.engagementType" for="field_engagementType">Engagement Type</label>
+                    <select class="form-control" id="field_engagementType" name="engagementType" formControlName="engagementTypeId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="engagementTypeOption.id" *ngFor="let engagementTypeOption of engagementtypes; trackBy: trackById">{{ engagementTypeOption.label }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="bankLoanManagerApp.filelistEgagementType.filelist" for="field_filelist">Filelist</label>
+                    <select class="form-control" id="field_filelist" name="filelist" formControlName="filelistId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="filelistOption.id" *ngFor="let filelistOption of filelists; trackBy: trackById">{{ filelistOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

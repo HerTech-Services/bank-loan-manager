@@ -1,0 +1,9 @@
+{
+  "bankLoanManagerApp": {
+    "Sex": {
+      "null": "",
+      "MASCULIN": "M",
+      "FEMININ": "F"
+    }
+  }
+}

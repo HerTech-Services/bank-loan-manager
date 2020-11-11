@@ -1,0 +1,11 @@
+id;sequence;is_system;process_delay;delay_1;delay_2;viewed;created_date;process_date;process_comment;type_id;assignee_id;engagement_id
+1;77764;true;34722;66852;50503;8495;2020-11-09T04:23:23;2020-11-09T01:34:06;../fake-data/blob/hipster.txt;1;2;1
+2;48133;true;64737;64152;15584;29717;2020-11-08T19:38:07;2020-11-08T11:30:29;../fake-data/blob/hipster.txt;2;2;2
+3;60032;false;2129;41718;99218;2316;2020-11-08T18:27:00;2020-11-09T08:55:39;../fake-data/blob/hipster.txt;3;2;3
+4;37446;false;14638;56576;80834;28189;2020-11-08T14:42:05;2020-11-09T07:00:22;../fake-data/blob/hipster.txt;4;2;4
+5;46796;true;46567;82637;73168;89756;2020-11-08T12:43:29;2020-11-08T15:22:26;../fake-data/blob/hipster.txt;5;2;5
+6;92912;true;55986;96003;69872;64439;2020-11-09T01:38:22;2020-11-09T08:24:56;../fake-data/blob/hipster.txt;6;2;6
+7;90672;false;28136;97652;17881;84521;2020-11-09T06:14:32;2020-11-08T13:33:06;../fake-data/blob/hipster.txt;7;2;7
+8;3158;true;79811;83739;34312;46770;2020-11-08T14:35:27;2020-11-09T05:52:51;../fake-data/blob/hipster.txt;8;2;8
+9;84701;false;46099;67423;83396;71770;2020-11-09T09:38:41;2020-11-09T08:16:20;../fake-data/blob/hipster.txt;9;1;9
+10;74123;false;94192;48628;9752;72915;2020-11-09T00:22:23;2020-11-08T10:07:15;../fake-data/blob/hipster.txt;10;2;10

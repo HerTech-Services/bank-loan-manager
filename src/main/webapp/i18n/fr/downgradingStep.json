@@ -1,0 +1,24 @@
+{
+  "bankLoanManagerApp": {
+    "downgradingStep": {
+      "home": {
+        "title": "DowngradingSteps",
+        "createLabel": "Créer un nouveau Downgrading Step",
+        "createOrEditLabel": "Créer ou éditer un Downgrading Step",
+        "notFound": "Aucun Downgrading Step trouvé"
+      },
+      "created": "Un nouveau Downgrading Step a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Downgrading Step avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Downgrading Step avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Downgrading Step {{ id }} ?"
+      },
+      "detail": {
+        "title": "Downgrading Step"
+      },
+      "label": "Label",
+      "identifier": "Identifier",
+      "scoring": "Scoring"
+    }
+  }
+}

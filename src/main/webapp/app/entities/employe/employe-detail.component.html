@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="employe">
+            <h2><span jhiTranslate="bankLoanManagerApp.employe.detail.title">Employe</span> {{ employe.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.codBnk">Cod Bnk</span></dt>
+                <dd>
+                    <span>{{ employe.codBnk }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.codEmp">Cod Emp</span></dt>
+                <dd>
+                    <span>{{ employe.codEmp }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.rsEmp">Rs Emp</span></dt>
+                <dd>
+                    <span>{{ employe.rsEmp }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.nomEmp">Nom Emp</span></dt>
+                <dd>
+                    <span>{{ employe.nomEmp }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.prenomEmp">Prenom Emp</span></dt>
+                <dd>
+                    <span>{{ employe.prenomEmp }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.fctEmp">Fct Emp</span></dt>
+                <dd>
+                    <span>{{ employe.fctEmp }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.adrEmp">Adr Emp</span></dt>
+                <dd>
+                    <span>{{ employe.adrEmp }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.teEmp">Te Emp</span></dt>
+                <dd>
+                    <span>{{ employe.teEmp }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.typEnmp">Typ Enmp</span></dt>
+                <dd>
+                    <span>{{ employe.typEnmp }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.numMat">Num Mat</span></dt>
+                <dd>
+                    <span>{{ employe.numMat }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.employe.user">User</span></dt>
+                <dd>
+                    {{ employe.userLogin }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/employe', employe.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

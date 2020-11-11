@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="rejectType">
+            <h2><span jhiTranslate="bankLoanManagerApp.rejectType.detail.title">Reject Type</span> {{ rejectType.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.rejectType.label">Label</span></dt>
+                <dd>
+                    <span>{{ rejectType.label }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.rejectType.identifier">Identifier</span></dt>
+                <dd>
+                    <span>{{ rejectType.identifier }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.rejectType.scoring">Scoring</span></dt>
+                <dd>
+                    <div *ngIf="rejectType.scoringId">
+                        <a [routerLink]="['/scoring', rejectType.scoringId, 'view']">{{ rejectType.scoringLabel }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/reject-type', rejectType.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

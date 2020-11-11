@@ -1,0 +1,97 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bankLoanManagerApp.entite.home.title">Entites</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-entite" [routerLink]="['/entite/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bankLoanManagerApp.entite.home.createLabel">
+            Create a new Entite
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="entites?.length === 0">
+        <span jhiTranslate="bankLoanManagerApp.entite.home.notFound">No entites found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="entites && entites.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="identifier"><span jhiTranslate="bankLoanManagerApp.entite.identifier">Identifier</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="label"><span jhiTranslate="bankLoanManagerApp.entite.label">Label</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="shortLabel"><span jhiTranslate="bankLoanManagerApp.entite.shortLabel">Short Label</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="parent"><span jhiTranslate="bankLoanManagerApp.entite.parent">Parent</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="isEnabled"><span jhiTranslate="bankLoanManagerApp.entite.isEnabled">Is Enabled</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="adrs1"><span jhiTranslate="bankLoanManagerApp.entite.adrs1">Adrs 1</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="adrs2"><span jhiTranslate="bankLoanManagerApp.entite.adrs2">Adrs 2</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="adrs3"><span jhiTranslate="bankLoanManagerApp.entite.adrs3">Adrs 3</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="zipcode"><span jhiTranslate="bankLoanManagerApp.entite.zipcode">Zipcode</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="city"><span jhiTranslate="bankLoanManagerApp.entite.city">City</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="country"><span jhiTranslate="bankLoanManagerApp.entite.country">Country</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="bankLoanManagerApp.entite.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="parameters"><span jhiTranslate="bankLoanManagerApp.entite.parameters">Parameters</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="parentId"><span jhiTranslate="bankLoanManagerApp.entite.parentId">Parent Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entite of entites ;trackBy: trackId">
+                    <td><a [routerLink]="['/entite', entite.id, 'view']">{{ entite.id }}</a></td>
+                    <td>{{ entite.identifier }}</td>
+                    <td>{{ entite.label }}</td>
+                    <td>{{ entite.shortLabel }}</td>
+                    <td>{{ entite.parent }}</td>
+                    <td>{{ entite.isEnabled }}</td>
+                    <td>{{ entite.adrs1 }}</td>
+                    <td>{{ entite.adrs2 }}</td>
+                    <td>{{ entite.adrs3 }}</td>
+                    <td>{{ entite.zipcode }}</td>
+                    <td>{{ entite.city }}</td>
+                    <td>{{ entite.country }}</td>
+                    <td>{{ entite.email }}</td>
+                    <td>{{ entite.parameters }}</td>
+                    <td>{{ entite.parentId }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/entite', entite.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/entite', entite.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(entite)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="entites && entites.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

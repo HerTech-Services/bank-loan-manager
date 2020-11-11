@@ -1,0 +1,11 @@
+id;created_date;capital;interests;penalties;accessories;description;type_id;engagement_id
+1;2020-11-08T13:36:37;76168;55989;99078;87813;../fake-data/blob/hipster.txt;1;1
+2;2020-11-09T04:34:29;9577;76999;43596;8240;../fake-data/blob/hipster.txt;2;2
+3;2020-11-08T21:20:34;48791;9443;62517;53843;../fake-data/blob/hipster.txt;3;3
+4;2020-11-09T02:12:48;9936;8750;83959;17258;../fake-data/blob/hipster.txt;4;4
+5;2020-11-09T06:02:10;53688;24425;1262;12434;../fake-data/blob/hipster.txt;5;5
+6;2020-11-09T03:22:24;46076;60660;33496;1712;../fake-data/blob/hipster.txt;6;6
+7;2020-11-08T21:30:21;60077;27609;43210;66867;../fake-data/blob/hipster.txt;7;7
+8;2020-11-08T15:59:36;98716;25151;74901;40723;../fake-data/blob/hipster.txt;8;8
+9;2020-11-08T10:35:27;27046;509;51533;78107;../fake-data/blob/hipster.txt;9;9
+10;2020-11-08T22:17:21;92416;39045;46455;3852;../fake-data/blob/hipster.txt;10;10

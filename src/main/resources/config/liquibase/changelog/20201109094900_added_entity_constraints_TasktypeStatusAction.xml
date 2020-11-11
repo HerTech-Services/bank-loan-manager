@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity TasktypeStatusAction.
+    -->
+    <changeSet id="20201109094900-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="tasktype_id"
+                                 baseTableName="tasktype_status_action"
+                                 constraintName="fk_tasktype_status_action_tasktype_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="task_type"/>
+
+        <addForeignKeyConstraint baseColumnNames="action_id"
+                                 baseTableName="tasktype_status_action"
+                                 constraintName="fk_tasktype_status_action_action_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="action"/>
+
+        <addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="tasktype_status_action"
+                                 constraintName="fk_tasktype_status_action_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="status"/>
+
+    </changeSet>
+</databaseChangeLog>

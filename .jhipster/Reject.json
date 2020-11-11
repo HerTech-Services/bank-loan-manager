@@ -1,0 +1,68 @@
+{
+  "name": "Reject",
+  "fields": [
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "capital",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "interests",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "penalties",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "accessories",
+      "fieldType": "BigDecimal",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "rejectType",
+      "otherEntityRelationshipName": "reject",
+      "relationshipValidateRules": "required",
+      "relationshipName": "type",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "engagement",
+      "otherEntityRelationshipName": "reject",
+      "relationshipValidateRules": "required",
+      "relationshipName": "engagement",
+      "otherEntityField": "subject"
+    }
+  ],
+  "changelogDate": "20201109093900",
+  "entityTableName": "reject",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,87 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bankLoanManagerApp.employeEntite.home.title">Employe Entites</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-employe-entite" [routerLink]="['/employe-entite/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="bankLoanManagerApp.employeEntite.home.createLabel">
+            Create a new Employe Entite
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="employeEntites?.length === 0">
+        <span jhiTranslate="bankLoanManagerApp.employeEntite.home.notFound">No employeEntites found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="employeEntites && employeEntites.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="role"><span jhiTranslate="bankLoanManagerApp.employeEntite.role">Role</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="isPrimary"><span jhiTranslate="bankLoanManagerApp.employeEntite.isPrimary">Is Primary</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="isChief"><span jhiTranslate="bankLoanManagerApp.employeEntite.isChief">Is Chief</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="employeNomEmp"><span jhiTranslate="bankLoanManagerApp.employeEntite.employe">Employe</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="entiteLabel"><span jhiTranslate="bankLoanManagerApp.employeEntite.entite">Entite</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employeEntite of employeEntites ;trackBy: trackId">
+                    <td><a [routerLink]="['/employe-entite', employeEntite.id, 'view']">{{ employeEntite.id }}</a></td>
+                    <td>{{ employeEntite.role }}</td>
+                    <td>{{ employeEntite.isPrimary }}</td>
+                    <td>{{ employeEntite.isChief }}</td>
+                    <td>
+                        <div *ngIf="employeEntite.employeId">
+                            <a [routerLink]="['/employe', employeEntite.employeId , 'view']" >{{ employeEntite.employeNomEmp }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="employeEntite.entiteId">
+                            <a [routerLink]="['/entite', employeEntite.entiteId , 'view']" >{{ employeEntite.entiteLabel }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/employe-entite', employeEntite.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/employe-entite', employeEntite.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(employeEntite)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="employeEntites && employeEntites.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

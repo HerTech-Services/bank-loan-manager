@@ -3,7 +3,9 @@ package tect.her.ccm.config;
 import io.github.jhipster.config.JHipsterProperties;
 import io.github.jhipster.config.cache.PrefixedKeyGenerator;
 import java.time.Duration;
-import org.ehcache.config.builders.*;
+import org.ehcache.config.builders.CacheConfigurationBuilder;
+import org.ehcache.config.builders.ExpiryPolicyBuilder;
+import org.ehcache.config.builders.ResourcePoolsBuilder;
 import org.ehcache.jsr107.Eh107Configuration;
 import org.hibernate.cache.jcache.ConfigSettings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,8 @@ import org.springframework.boot.info.BuildProperties;
 import org.springframework.boot.info.GitProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableCaching
@@ -47,6 +50,42 @@ public class CacheConfiguration {
             createCache(cm, tect.her.ccm.domain.User.class.getName());
             createCache(cm, tect.her.ccm.domain.Authority.class.getName());
             createCache(cm, tect.her.ccm.domain.User.class.getName() + ".authorities");
+            createCache(cm, tect.her.ccm.domain.Scoring.class.getName());
+            createCache(cm, tect.her.ccm.domain.Sector.class.getName());
+            createCache(cm, tect.her.ccm.domain.DowngradingStep.class.getName());
+            createCache(cm, tect.her.ccm.domain.Downgrading.class.getName());
+            createCache(cm, tect.her.ccm.domain.RejectType.class.getName());
+            createCache(cm, tect.her.ccm.domain.Reject.class.getName());
+            createCache(cm, tect.her.ccm.domain.Client.class.getName());
+            createCache(cm, tect.her.ccm.domain.Client.class.getName() + ".comptes");
+            createCache(cm, tect.her.ccm.domain.Client.class.getName() + ".engagements");
+            createCache(cm, tect.her.ccm.domain.Employe.class.getName());
+            createCache(cm, tect.her.ccm.domain.Compte.class.getName());
+            createCache(cm, tect.her.ccm.domain.Compte.class.getName() + ".engagements");
+            createCache(cm, tect.her.ccm.domain.Engagement.class.getName());
+            createCache(cm, tect.her.ccm.domain.Engagement.class.getName() + ".downgradings");
+            createCache(cm, tect.her.ccm.domain.Engagement.class.getName() + ".rejects");
+            createCache(cm, tect.her.ccm.domain.Engagement.class.getName() + ".tasks");
+            createCache(cm, tect.her.ccm.domain.Engagement.class.getName() + ".notes");
+            createCache(cm, tect.her.ccm.domain.EngagementType.class.getName());
+            createCache(cm, tect.her.ccm.domain.Status.class.getName());
+            createCache(cm, tect.her.ccm.domain.Task.class.getName());
+            createCache(cm, tect.her.ccm.domain.TaskType.class.getName());
+            createCache(cm, tect.her.ccm.domain.Action.class.getName());
+            createCache(cm, tect.her.ccm.domain.TasktypeStatusAction.class.getName());
+            createCache(cm, tect.her.ccm.domain.TaskLog.class.getName());
+            createCache(cm, tect.her.ccm.domain.TypeEntite.class.getName());
+            createCache(cm, tect.her.ccm.domain.Entite.class.getName());
+            createCache(cm, tect.her.ccm.domain.Entite.class.getName() + ".employeEntites");
+            createCache(cm, tect.her.ccm.domain.EmployeEntite.class.getName());
+            createCache(cm, tect.her.ccm.domain.Notes.class.getName());
+            createCache(cm, tect.her.ccm.domain.Parameters.class.getName());
+            createCache(cm, tect.her.ccm.domain.Filelist.class.getName());
+            createCache(cm, tect.her.ccm.domain.Filelist.class.getName() + ".filelistEngagementTypes");
+            createCache(cm, tect.her.ccm.domain.FilelistEgagementType.class.getName());
+            createCache(cm, tect.her.ccm.domain.Attachment.class.getName());
+            createCache(cm, tect.her.ccm.domain.Attachment.class.getName() + ".origins");
+            createCache(cm, tect.her.ccm.domain.Attachment.class.getName() + ".children");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,102 @@
+{
+  "name": "Attachment",
+  "fields": [
+    {
+      "fieldName": "label",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "format",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "32"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "updatedDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "version",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "path",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "filename",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "filesize",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "validationDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "engagement",
+      "otherEntityRelationshipName": "attachment",
+      "relationshipValidateRules": "required",
+      "relationshipName": "engagement",
+      "otherEntityField": "subject",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "attachment",
+      "relationshipName": "user",
+      "otherEntityField": "firstName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "user",
+      "otherEntityRelationshipName": "attachment",
+      "relationshipName": "updatedBy",
+      "otherEntityField": "firstName"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "status",
+      "otherEntityRelationshipName": "attachment",
+      "relationshipName": "status",
+      "otherEntityField": "label"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "attachment",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "origin",
+      "otherEntityField": "label",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "attachment",
+      "otherEntityRelationshipName": "origin",
+      "relationshipName": "child",
+      "otherEntityField": "label",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201109095800",
+  "entityTableName": "attachment",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

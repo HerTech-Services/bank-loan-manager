@@ -1,0 +1,23 @@
+{
+  "bankLoanManagerApp": {
+    "scoring": {
+      "home": {
+        "title": "Scorings",
+        "createLabel": "Créer un nouveau Scoring",
+        "createOrEditLabel": "Créer ou éditer un Scoring",
+        "notFound": "Aucun Scoring trouvé"
+      },
+      "created": "Un nouveau Scoring a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Scoring avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Scoring avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Scoring {{ id }} ?"
+      },
+      "detail": {
+        "title": "Scoring"
+      },
+      "label": "Label",
+      "score": "Score"
+    }
+  }
+}

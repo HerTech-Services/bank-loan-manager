@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="typeEntite">
+            <h2><span jhiTranslate="bankLoanManagerApp.typeEntite.detail.title">Type Entite</span> {{ typeEntite.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.typeEntite.identifier">Identifier</span></dt>
+                <dd>
+                    <span>{{ typeEntite.identifier }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.typeEntite.label">Label</span></dt>
+                <dd>
+                    <span>{{ typeEntite.label }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.typeEntite.shortLabel">Short Label</span></dt>
+                <dd>
+                    <span>{{ typeEntite.shortLabel }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/type-entite', typeEntite.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

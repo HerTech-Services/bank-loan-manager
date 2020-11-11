@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="taskLog">
+            <h2><span jhiTranslate="bankLoanManagerApp.taskLog.detail.title">Task Log</span> {{ taskLog.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.taskLog.comment">Comment</span></dt>
+                <dd>
+                    <span>{{ taskLog.comment }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.taskLog.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{ taskLog.createdDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.taskLog.taskProperties">Task Properties</span></dt>
+                <dd>
+                    <span>{{ taskLog.taskProperties }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.taskLog.engagementProperties">Engagement Properties</span></dt>
+                <dd>
+                    <span>{{ taskLog.engagementProperties }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.taskLog.user">User</span></dt>
+                <dd>
+                    {{ taskLog.userFirstName }}
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.taskLog.action">Action</span></dt>
+                <dd>
+                    <div *ngIf="taskLog.actionId">
+                        <a [routerLink]="['/action', taskLog.actionId, 'view']">{{ taskLog.actionLabel }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.taskLog.task">Task</span></dt>
+                <dd>
+                    <div *ngIf="taskLog.taskId">
+                        <a [routerLink]="['/task', taskLog.taskId, 'view']">{{ taskLog.taskId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.taskLog.engagement">Engagement</span></dt>
+                <dd>
+                    <div *ngIf="taskLog.engagementId">
+                        <a [routerLink]="['/engagement', taskLog.engagementId, 'view']">{{ taskLog.engagementSubject }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/task-log', taskLog.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

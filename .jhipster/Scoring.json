@@ -1,0 +1,29 @@
+{
+  "name": "Scoring",
+  "fields": [
+    {
+      "fieldName": "label",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "score",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min", "unique"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201109093400",
+  "javadoc": "Model CCM-BANK",
+  "entityTableName": "scoring",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

@@ -1,0 +1,88 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="attachment">
+            <h2><span jhiTranslate="bankLoanManagerApp.attachment.detail.title">Attachment</span> {{ attachment.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.label">Label</span></dt>
+                <dd>
+                    <span>{{ attachment.label }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.format">Format</span></dt>
+                <dd>
+                    <span>{{ attachment.format }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.createdDate">Created Date</span></dt>
+                <dd>
+                    <span>{{ attachment.createdDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.updatedDate">Updated Date</span></dt>
+                <dd>
+                    <span>{{ attachment.updatedDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.version">Version</span></dt>
+                <dd>
+                    <span>{{ attachment.version }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.path">Path</span></dt>
+                <dd>
+                    <span>{{ attachment.path }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.filename">Filename</span></dt>
+                <dd>
+                    <span>{{ attachment.filename }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.filesize">Filesize</span></dt>
+                <dd>
+                    <span>{{ attachment.filesize }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.validationDate">Validation Date</span></dt>
+                <dd>
+                    <span>{{ attachment.validationDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.engagement">Engagement</span></dt>
+                <dd>
+                    <div *ngIf="attachment.engagementId">
+                        <a [routerLink]="['/engagement', attachment.engagementId, 'view']">{{ attachment.engagementSubject }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.user">User</span></dt>
+                <dd>
+                    {{ attachment.userFirstName }}
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.updatedBy">Updated By</span></dt>
+                <dd>
+                    {{ attachment.updatedByFirstName }}
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.status">Status</span></dt>
+                <dd>
+                    <div *ngIf="attachment.statusId">
+                        <a [routerLink]="['/status', attachment.statusId, 'view']">{{ attachment.statusLabel }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.attachment.origin">Origin</span></dt>
+                <dd>
+                    <span *ngFor="let origin of attachment.origins; let last = last">
+                        <a [routerLink]="['/attachment', origin?.id, 'view']">{{ origin.label }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/attachment', attachment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

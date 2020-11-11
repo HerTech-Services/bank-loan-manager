@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="downgradingStep">
+            <h2><span jhiTranslate="bankLoanManagerApp.downgradingStep.detail.title">Downgrading Step</span> {{ downgradingStep.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bankLoanManagerApp.downgradingStep.label">Label</span></dt>
+                <dd>
+                    <span>{{ downgradingStep.label }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.downgradingStep.identifier">Identifier</span></dt>
+                <dd>
+                    <span>{{ downgradingStep.identifier }}</span>
+                </dd>
+                <dt><span jhiTranslate="bankLoanManagerApp.downgradingStep.scoring">Scoring</span></dt>
+                <dd>
+                    <div *ngIf="downgradingStep.scoringId">
+                        <a [routerLink]="['/scoring', downgradingStep.scoringId, 'view']">{{ downgradingStep.scoringLabel }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/downgrading-step', downgradingStep.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

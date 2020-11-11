@@ -1,0 +1,27 @@
+{
+  "bankLoanManagerApp": {
+    "status": {
+      "home": {
+        "title": "Statuses",
+        "createLabel": "Créer un nouveau Status",
+        "createOrEditLabel": "Créer ou éditer un Status",
+        "notFound": "Aucun Status trouvé"
+      },
+      "created": "Un nouveau Status a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Status avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Status avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Status {{ id }} ?"
+      },
+      "detail": {
+        "title": "Status"
+      },
+      "label": "Label",
+      "isSystem": "Is System",
+      "imgFilename": "Img Filename",
+      "canBeSearched": "Can Be Searched",
+      "canBeModified": "Can Be Modified",
+      "isEnabled": "Is Enabled"
+    }
+  }
+}
