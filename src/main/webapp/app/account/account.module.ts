@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { BankLoanManagerSharedModule } from 'app/shared/shared.module';
 
 import { PasswordStrengthBarComponent } from './password/password-strength-bar.component';
+import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ActivateComponent } from './activate/activate.component';
 import { PasswordComponent } from './password/password.component';
@@ -11,19 +12,18 @@ import { PasswordResetInitComponent } from './password-reset/init/password-reset
 import { PasswordResetFinishComponent } from './password-reset/finish/password-reset-finish.component';
 import { SettingsComponent } from './settings/settings.component';
 import { accountState } from './account.route';
-import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [BankLoanManagerSharedModule, RouterModule.forChild(accountState)],
   declarations: [
     ActivateComponent,
+    LoginComponent,
     RegisterComponent,
     PasswordComponent,
     PasswordStrengthBarComponent,
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
     SettingsComponent,
-    LoginComponent,
   ],
 })
 export class AccountModule {}
