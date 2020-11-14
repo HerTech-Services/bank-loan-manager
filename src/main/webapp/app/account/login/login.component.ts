@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {FormBuilder,FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { LoginService } from 'app/core/login/login.service';
@@ -12,14 +12,12 @@ import { LoginService } from 'app/core/login/login.service';
 export class LoginComponent implements AfterViewInit {
   @ViewChild('username', { static: false })
   username?: ElementRef;
-
-  authenticationError = false;
-
-  loginForm = this.fb.group({
-    username: [''],
-    password: [''],
+  loginForm: FormGroup = this.fb.group({
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]],
     rememberMe: [false],
   });
+  authenticationError = false;
 
   constructor(private loginService: LoginService, private router: Router, private fb: FormBuilder) {}
 
@@ -28,6 +26,9 @@ export class LoginComponent implements AfterViewInit {
       this.username.nativeElement.focus();
     }
   }
+
+  // convenience getter for easy access to form fields
+  get f(): any { return this.loginForm.controls; }
 
   cancel(): void {
     this.authenticationError = false;
@@ -60,4 +61,5 @@ export class LoginComponent implements AfterViewInit {
   requestResetPassword(): void {
     this.router.navigate(['/account/reset', 'request']);
   }
+
 }

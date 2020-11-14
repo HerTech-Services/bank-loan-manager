@@ -39,6 +39,9 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
         historyApiFallback: true
     },
     entry: {
+        icons: './src/main/webapp/content/scss/icons.scss',
+        app: './src/main/webapp/content/scss/app.scss',
+        bootstrap: './src/main/webapp/content/scss/bootstrap.scss',
         global: './src/main/webapp/content/scss/global.scss',
         main: './src/main/webapp/app/app.main'
     },
@@ -60,10 +63,10 @@ module.exports = (options) => webpackMerge(commonConfig({ env: ENV }), {
                 loader: 'sass-loader',
                 options: { implementation: sass }
             }],
-            exclude: /(vendor\.scss|global\.scss)/
+            exclude: /(vendor\.scss|global\.scss|bootstrap\.scss|app\.scss|icons\.scss)/
         },
         {
-            test: /(vendor\.scss|global\.scss)/,
+            test: /(vendor\.scss|global\.scss|bootstrap\.scss|app\.scss|icons\.scss)/,
             use: ['style-loader', 'css-loader', 'postcss-loader', {
                 loader: 'sass-loader',
                 options: { implementation: sass }

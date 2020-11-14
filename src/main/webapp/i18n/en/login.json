@@ -1,5 +1,6 @@
 {
   "login": {
+    "welcome": "Welcome",
     "title": "Sign in",
     "form": {
       "password": "Password",
@@ -12,8 +13,12 @@
         "authentication": "<strong>Failed to sign in!</strong> Please check your credentials and try again."
       }
     },
+    "username": {
+      "required": "Username is required"
+    },
     "password": {
-      "forgot": "Did you forget your password?"
+      "forgot": "Did you forget your password?",
+      "required": "Password is required"
     }
   }
 }
