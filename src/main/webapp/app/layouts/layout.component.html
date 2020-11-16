@@ -1,11 +1,5 @@
-<div>
-    <router-outlet name="navbar"></router-outlet>
-</div>
+<!-- vertical layout -->
+<jhi-vertical *ngIf="isVerticalLayoutRequested()"></jhi-vertical>
 
-<div class="container-fluid">
-    <div class="card jh-card">
-        <router-outlet></router-outlet>
-    </div>
-
-    <jhi-footer></jhi-footer>
-</div>
+<!-- horizontal layout 
+<jhi-horizontal *ngIf="isHorizontalLayoutRequested()"></jhi-horizontal>-->

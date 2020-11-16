@@ -161,5 +161,12 @@
       "not.image": "Le fichier doit être une image et non du type \"{{ fileType }}\""
     }
   },
-  "footer": "Ceci est votre pied de page"
+  "footer": "Développé par : HerTech Services",
+  "topbar": {
+    "notifications": {
+      "title": "Notifications",
+      "view_all": "Voir Tout",
+      "loadmore": "Afficher Plus"
+    }
+  }
 }

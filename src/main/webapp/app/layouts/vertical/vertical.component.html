@@ -1,0 +1,19 @@
+<div id="layout-wrapper">
+
+  <jhi-topbar (settingsButtonClicked)="onSettingsButtonClicked()" (mobileMenuButtonClicked)="onToggleMobileMenu()">
+  </jhi-topbar>
+
+  <jhi-sidebar [isCondensed]="isCondensed"></jhi-sidebar>
+
+  <div class="main-content">
+    <div class="page-content">
+      <!-- content -->
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- footer -->
+    <jhi-footer></jhi-footer>
+  </div>
+</div>
+
+<jhi-rightsidebar></jhi-rightsidebar>
