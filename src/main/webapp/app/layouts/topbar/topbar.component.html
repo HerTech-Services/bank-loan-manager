@@ -121,6 +121,14 @@
                         <i class="bx bx-user font-size-16 align-middle mr-1"></i>
                         <span jhiTranslate="global.menu.account.settings">Settings</span>
                     </a>
+                    <a class="dropdown-item" routerLink="account/password" routerLinkActive="active">
+                        <i class="bx bx-lock-alt font-size-16 align-middle mr-1"></i>
+                        <span jhiTranslate="global.menu.account.password">Password</span>
+                    </a>
+                    <a class="dropdown-item" (click)="logout()">
+                        <i class="bx bx-log-out-circle font-size-16 align-middle mr-1"></i>
+                        <span jhiTranslate="global.menu.account.logout">Sign out</span>
+                    </a>
                 </div>
             </div>
 

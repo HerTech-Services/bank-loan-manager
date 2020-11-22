@@ -164,30 +164,31 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnChanges {
       const parentEl = menuItemEl.parentElement;
       if (parentEl) {
         parentEl.classList.add('mm-active');
-
-        const parent2El = parentEl.parentElement.closest('ul');
-        if (parent2El && parent2El.id !== 'side-menu') {
-          parent2El.classList.add('mm-show');
-          const parent3El = parent2El.parentElement;
-          if (parent3El && parent3El.id !== 'side-menu') {
-            parent3El.classList.add('mm-active');
-            const childAnchor = parent3El.querySelector('.has-arrow');
-            const childDropdown = parent3El.querySelector('.has-dropdown');
-            if (childAnchor) {
-              childAnchor.classList.add('mm-active');
-            }
-            if (childDropdown) {
-              childDropdown.classList.add('mm-active');
-            }
-            const parent4El = parent3El.parentElement;
-            if (parent4El && parent4El.id !== 'side-menu') {
-              parent4El.classList.add('mm-show');
-              const parent5El = parent4El.parentElement;
-              if (parent5El && parent5El.id !== 'side-menu') {
-                parent5El.classList.add('mm-active');
-                const childanchor = parent5El.querySelector('.is-parent');
-                if (childanchor && parent5El.id !== 'side-menu') {
-                  childanchor.classList.add('mm-active');
+        if (parentEl.parentElement) {
+          const parent2El = parentEl.parentElement.closest('ul');
+          if (parent2El && parent2El.id !== 'side-menu') {
+            parent2El.classList.add('mm-show');
+            const parent3El = parent2El.parentElement;
+            if (parent3El && parent3El.id !== 'side-menu') {
+              parent3El.classList.add('mm-active');
+              const childAnchor = parent3El.querySelector('.has-arrow');
+              const childDropdown = parent3El.querySelector('.has-dropdown');
+              if (childAnchor) {
+                childAnchor.classList.add('mm-active');
+              }
+              if (childDropdown) {
+                childDropdown.classList.add('mm-active');
+              }
+              const parent4El = parent3El.parentElement;
+              if (parent4El && parent4El.id !== 'side-menu') {
+                parent4El.classList.add('mm-show');
+                const parent5El = parent4El.parentElement;
+                if (parent5El && parent5El.id !== 'side-menu') {
+                  parent5El.classList.add('mm-active');
+                  const childanchor = parent5El.querySelector('.is-parent');
+                  if (childanchor && parent5El.id !== 'side-menu') {
+                    childanchor.classList.add('mm-active');
+                  }
                 }
               }
             }
