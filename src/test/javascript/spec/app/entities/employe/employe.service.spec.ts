@@ -1,6 +1,6 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { EmployeService } from 'app/entities/employe/employe.service';
+import { EmployeService } from 'app/admin/employe/employe.service';
 import { IEmploye, Employe } from 'app/shared/model/employe.model';
 
 describe('Service Tests', () => {

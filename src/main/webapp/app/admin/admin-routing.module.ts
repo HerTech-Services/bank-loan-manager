@@ -14,6 +14,10 @@ import { RouterModule } from '@angular/router';
         },
       },
       {
+        path: 'employe',
+        loadChildren: () => import('./employe/employe.module').then(m => m.BankLoanManagerEmployeModule),
+      },
+      {
         path: 'audits',
         loadChildren: () => import('./audits/audits.module').then(m => m.AuditsModule),
       },

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 import { BankLoanManagerTestModule } from '../../../test.module';
-import { EmployeDetailComponent } from 'app/entities/employe/employe-detail.component';
+import { EmployeDetailComponent } from 'app/admin/employe/employe-detail.component';
 import { Employe } from 'app/shared/model/employe.model';
 
 describe('Component Tests', () => {

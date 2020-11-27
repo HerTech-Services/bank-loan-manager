@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { IEmployeEntite, EmployeEntite } from 'app/shared/model/employe-entite.model';
 import { EmployeEntiteService } from './employe-entite.service';
 import { IEmploye } from 'app/shared/model/employe.model';
-import { EmployeService } from 'app/entities/employe/employe.service';
+import { EmployeService } from 'app/admin/employe/employe.service';
 import { IEntite } from 'app/shared/model/entite.model';
 import { EntiteService } from 'app/entities/entite/entite.service';
 

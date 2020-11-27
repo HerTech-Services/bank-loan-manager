@@ -25,7 +25,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   page!: number;
   predicate!: string;
   ascending!: boolean;
-
+  breadCrumbItems?: Array<{}>;
   constructor(
     private userService: UserService,
     private accountService: AccountService,
@@ -36,6 +36,7 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.breadCrumbItems = [{ label: 'global.menu.admin.main' }, { label: 'global.menu.admin.userManagement', active: true }];
     this.accountService.identity().subscribe(account => (this.currentAccount = account));
     this.userListSubscription = this.eventManager.subscribe('userListModification', () => this.loadAll());
     this.handleNavigation();

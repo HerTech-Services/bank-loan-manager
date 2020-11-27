@@ -9,22 +9,26 @@ import { IEmploye, Employe } from 'app/shared/model/employe.model';
 import { EmployeService } from './employe.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
+import { LogService } from 'app/log.service';
 
 @Component({
   selector: 'jhi-employe-update',
   templateUrl: './employe-update.component.html',
 })
 export class EmployeUpdateComponent implements OnInit {
+  loading = false;
   isSaving = false;
+  creationMode = false;
   users: IUser[] = [];
-
+  employe: IEmploye = {};
+  active = 1;
   editForm = this.fb.group({
     id: [],
     codBnk: [null, [Validators.maxLength(4)]],
     codEmp: [null, [Validators.maxLength(6)]],
     rsEmp: [null, [Validators.maxLength(50)]],
-    nomEmp: [],
-    prenomEmp: [],
+    nomEmp: [null, [Validators.required, Validators.maxLength(100)]],
+    prenomEmp: [null, [Validators.required, Validators.maxLength(100)]],
     fctEmp: [null, [Validators.maxLength(50)]],
     adrEmp: [null, [Validators.maxLength(50)]],
     teEmp: [null, [Validators.maxLength(50)]],
@@ -33,18 +37,37 @@ export class EmployeUpdateComponent implements OnInit {
     userId: [],
   });
 
+  breadCrumbItems?: Array<{}>;
+
   constructor(
     protected employeService: EmployeService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private logService: LogService
   ) {}
 
   ngOnInit(): void {
+    this.loading = true;
+    // TODO: ADD ON CREATION MODE
+    this.breadCrumbItems = [
+      { label: 'global.menu.admin.main' },
+      { label: 'bankLoanManagerApp.employe.home.title' },
+      { label: 'bankLoanManagerApp.employe.home.createOrEditLabel', active: true },
+    ];
     this.activatedRoute.data.subscribe(({ employe }) => {
+      this.employe = employe;
+      this.logService.log(employe);
       this.updateForm(employe);
-
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
+
+      if (employe === null) {
+        this.creationMode = true;
+        this.loading = false;
+      } else {
+        this.creationMode = false;
+        this.loading = false;
+      }
     });
   }
 

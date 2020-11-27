@@ -50,10 +50,6 @@ const LAYOUT_ROUTES = [navbarRoute];
         loadChildren: () => import('./client/client.module').then(m => m.BankLoanManagerClientModule),
       },
       {
-        path: 'employe',
-        loadChildren: () => import('./employe/employe.module').then(m => m.BankLoanManagerEmployeModule),
-      },
-      {
         path: 'compte',
         loadChildren: () => import('./compte/compte.module').then(m => m.BankLoanManagerCompteModule),
       },

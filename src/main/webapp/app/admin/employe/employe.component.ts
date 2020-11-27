@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
-import { Subscription, combineLatest } from 'rxjs';
-import { JhiEventManager } from 'ng-jhipster';
+import { HttpResponse, HttpHeaders } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { IEmploye } from 'app/shared/model/employe.model';
+import { Subscription, combineLatest } from 'rxjs';
+import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
+import { IEmploye } from 'app/shared/model/employe.model';
 import { EmployeService } from './employe.service';
 import { EmployeDeleteDialogComponent } from './employe-delete-dialog.component';
 
@@ -24,7 +23,7 @@ export class EmployeComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
-
+  breadCrumbItems?: Array<{}>;
   constructor(
     protected employeService: EmployeService,
     protected activatedRoute: ActivatedRoute,
@@ -49,6 +48,7 @@ export class EmployeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.breadCrumbItems = [{ label: 'global.menu.admin.main' }, { label: 'bankLoanManagerApp.employe.home.title', active: true }];
     this.handleNavigation();
     this.registerChangeInEmployes();
   }

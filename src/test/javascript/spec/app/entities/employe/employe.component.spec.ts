@@ -4,8 +4,8 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 
 import { BankLoanManagerTestModule } from '../../../test.module';
-import { EmployeComponent } from 'app/entities/employe/employe.component';
-import { EmployeService } from 'app/entities/employe/employe.service';
+import { EmployeComponent } from 'app/admin/employe/employe.component';
+import { EmployeService } from 'app/admin/employe/employe.service';
 import { Employe } from 'app/shared/model/employe.model';
 
 describe('Component Tests', () => {
