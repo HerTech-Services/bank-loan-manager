@@ -14,7 +14,15 @@
         "question": "Etes-vous certain de vouloir supprimer le Employe {{ id }} ?"
       },
       "detail": {
-        "title": "Employe"
+        "title": "Employe",
+        "informations": "Informations",
+        "user": "Utilisateur",
+        "entite": "Entité"
+      },
+      "utilisateur": {
+        "notFound": "Cet employé n'est pas rataché à un utilisateur!",
+        "created": "Un nouveau Utilisateur a été créé et rattaché à l'employé avec l'identifiant {{ param }}",
+        "updated": "L'Utilisateur rattaché à l'employé avec l'identifiant {{ param }} a été mis à jour"
       },
       "codBnk": "Cod Bnk",
       "codEmp": "Cod Emp",

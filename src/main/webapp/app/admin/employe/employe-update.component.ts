@@ -7,20 +7,27 @@ import { Observable } from 'rxjs';
 
 import { IEmploye, Employe } from 'app/shared/model/employe.model';
 import { EmployeService } from './employe.service';
-import { IUser } from 'app/core/user/user.model';
+import { IUser, User } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { LogService } from 'app/log.service';
+import { LANGUAGES } from 'app/core/language/language.constants';
 
 @Component({
   selector: 'jhi-employe-update',
   templateUrl: './employe-update.component.html',
 })
 export class EmployeUpdateComponent implements OnInit {
+  employe!: Employe;
   loading = false;
   isSaving = false;
-  creationMode = false;
+  hasUser = false;
+  createUser = true;
+  creationMode = true;
   users: IUser[] = [];
-  employe: IEmploye = {};
+  user!: User;
+  languages = LANGUAGES;
+  authorities: string[] = [];
+
   active = 1;
   editForm = this.fb.group({
     id: [],
@@ -28,13 +35,31 @@ export class EmployeUpdateComponent implements OnInit {
     codEmp: [null, [Validators.maxLength(6)]],
     rsEmp: [null, [Validators.maxLength(50)]],
     nomEmp: [null, [Validators.required, Validators.maxLength(100)]],
-    prenomEmp: [null, [Validators.required, Validators.maxLength(100)]],
+    prenomEmp: [null, [Validators.maxLength(100)]],
     fctEmp: [null, [Validators.maxLength(50)]],
     adrEmp: [null, [Validators.maxLength(50)]],
     teEmp: [null, [Validators.maxLength(50)]],
     typEnmp: [null, [Validators.maxLength(50)]],
     numMat: [null, [Validators.maxLength(50)]],
-    userId: [],
+  });
+
+  userForm = this.fb.group({
+    id: [],
+    login: [
+      '',
+      [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(50),
+        Validators.pattern('^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$|^[_.@A-Za-z0-9-]+$'),
+      ],
+    ],
+    firstName: ['', [Validators.maxLength(50)]],
+    lastName: ['', [Validators.maxLength(50)]],
+    email: ['', [Validators.minLength(5), Validators.maxLength(254), Validators.email]],
+    activated: [],
+    langKey: [],
+    authorities: [],
   });
 
   breadCrumbItems?: Array<{}>;
@@ -57,17 +82,46 @@ export class EmployeUpdateComponent implements OnInit {
     ];
     this.activatedRoute.data.subscribe(({ employe }) => {
       this.employe = employe;
-      this.logService.log(employe);
-      this.updateForm(employe);
-      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
-
-      if (employe === null) {
+      this.logService.log(this.employe.id);
+      if (this.employe.id === undefined) {
         this.creationMode = true;
-        this.loading = false;
       } else {
         this.creationMode = false;
-        this.loading = false;
       }
+
+      if (this.employe.userId) {
+        this.hasUser = true;
+        this.createUser = false;
+      } else {
+        this.createUser = true;
+        this.user = new User();
+        this.user.activated = true;
+        this.userForm.patchValue({
+          lastName: this.employe.nomEmp,
+          firstName: this.employe.prenomEmp,
+          email: null,
+        });
+        this.logService.log('Utilisateur patché'); // TODO: DELETE THIS LINE
+      }
+
+      this.logService.log(employe); // TODO: DELETE THIS LINE
+      this.updateForm(employe);
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => {
+        this.users = res.body || [];
+        if (employe && this.hasUser) {
+          const eUser: IUser[] = this.users.filter((user: IUser) => user.id === this.employe.userId);
+          if (eUser.length > 0) {
+            this.user = eUser[0];
+            this.updateUserForm(this.user);
+          }
+        }
+      });
+
+      this.userService.authorities().subscribe(authorities => {
+        this.authorities = authorities;
+      });
+
+      this.loading = false;
     });
   }
 
@@ -84,7 +138,6 @@ export class EmployeUpdateComponent implements OnInit {
       teEmp: employe.teEmp,
       typEnmp: employe.typEnmp,
       numMat: employe.numMat,
-      userId: employe.userId,
     });
   }
 
@@ -102,6 +155,23 @@ export class EmployeUpdateComponent implements OnInit {
     }
   }
 
+  saveUser(): void {
+    this.isSaving = true;
+    this.updateUser(this.user);
+    if (this.user.id !== undefined) {
+      this.employeService.updateEmployeUser(this.employe, this.user).subscribe(
+        (EntityResponseType: HttpResponse<IEmploye>) => this.onUpdateUserSuccess(EntityResponseType),
+        () => this.onSaveError()
+      );
+    } else {
+      this.logService.log(this.user);
+      this.employeService.createEmployeUser(this.employe, this.user).subscribe(
+        (EntityResponseType: HttpResponse<IEmploye>) => this.onSaveUserSuccess(EntityResponseType),
+        () => this.onSaveError()
+      );
+    }
+  }
+
   private createFromForm(): IEmploye {
     return {
       ...new Employe(),
@@ -116,7 +186,6 @@ export class EmployeUpdateComponent implements OnInit {
       teEmp: this.editForm.get(['teEmp'])!.value,
       typEnmp: this.editForm.get(['typEnmp'])!.value,
       numMat: this.editForm.get(['numMat'])!.value,
-      userId: this.editForm.get(['userId'])!.value,
     };
   }
 
@@ -132,11 +201,60 @@ export class EmployeUpdateComponent implements OnInit {
     this.previousState();
   }
 
+  protected onSaveUserSuccess(EntityResponseType: HttpResponse<IEmploye>): void {
+    this.logService.log(EntityResponseType);
+    this.employe = EntityResponseType.body || {};
+    this.userService.query().subscribe((res: HttpResponse<IUser[]>) => {
+      this.users = res.body || [];
+      const eUser: IUser[] = this.users.filter((user: IUser) => user.id === this.employe.userId);
+      if (eUser.length > 0) {
+        this.user = eUser[0];
+        this.updateUserForm(this.user);
+        this.hasUser = true;
+        this.createUser = false;
+        this.creationMode = false;
+      }
+    });
+    this.isSaving = false;
+  }
+
+  protected onUpdateUserSuccess(EntityResponseType: HttpResponse<IEmploye>): void {
+    this.logService.log(EntityResponseType);
+    this.isSaving = false;
+  }
+
   protected onSaveError(): void {
     this.isSaving = false;
   }
 
   trackById(index: number, item: IUser): any {
     return item.id;
+  }
+
+  toggleCreateUser(): void {
+    this.createUser = !this.createUser;
+  }
+
+  private updateUserForm(user: User): void {
+    this.userForm.patchValue({
+      id: user.id,
+      login: user.login,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      activated: user.activated,
+      langKey: user.langKey,
+      authorities: user.authorities,
+    });
+  }
+
+  private updateUser(user: User): void {
+    user.login = this.userForm.get(['login'])!.value;
+    user.firstName = this.userForm.get(['firstName'])!.value;
+    user.lastName = this.userForm.get(['lastName'])!.value;
+    user.email = this.userForm.get(['email'])!.value;
+    user.activated = this.userForm.get(['activated'])!.value;
+    user.langKey = this.userForm.get(['langKey'])!.value;
+    user.authorities = this.userForm.get(['authorities'])!.value;
   }
 }

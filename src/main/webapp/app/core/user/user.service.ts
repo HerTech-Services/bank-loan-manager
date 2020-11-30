@@ -5,14 +5,16 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption, Pagination } from 'app/shared/util/request-util';
 import { IUser } from './user.model';
+import { LogService } from 'app/log.service';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
   public resourceUrl = SERVER_API_URL + 'api/users';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private logService: LogService) {}
 
   create(user: IUser): Observable<IUser> {
+    this.logService.log(user);
     return this.http.post<IUser>(this.resourceUrl, user);
   }
 

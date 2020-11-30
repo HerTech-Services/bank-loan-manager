@@ -18,11 +18,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import tect.her.ccm.domain.Employe;
+import tect.her.ccm.domain.User;
+import tect.her.ccm.repository.UserRepository;
 import tect.her.ccm.service.EmployeQueryService;
 import tect.her.ccm.service.EmployeService;
+import tect.her.ccm.service.UserService;
 import tect.her.ccm.service.dto.EmployeCriteria;
 import tect.her.ccm.service.dto.EmployeDTO;
+import tect.her.ccm.service.dto.UserDTO;
 import tect.her.ccm.web.rest.errors.BadRequestAlertException;
+import tect.her.ccm.web.rest.errors.EmailAlreadyUsedException;
+import tect.her.ccm.web.rest.errors.LoginAlreadyUsedException;
 
 /**
  * REST controller for managing {@link tect.her.ccm.domain.Employe}.
@@ -33,17 +40,32 @@ public class EmployeResource {
     private final Logger log = LoggerFactory.getLogger(EmployeResource.class);
 
     private static final String ENTITY_NAME = "employe";
+    private static final String ENTITY_USER_NAME = "employe.utilisateur";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+
+    @Value("${application.default-password}")
+    private String defaultPassword;
 
     private final EmployeService employeService;
 
     private final EmployeQueryService employeQueryService;
 
-    public EmployeResource(EmployeService employeService, EmployeQueryService employeQueryService) {
+    private final UserRepository userRepository;
+
+    private final UserService userService;
+
+    public EmployeResource(
+        EmployeService employeService,
+        EmployeQueryService employeQueryService,
+        UserRepository userRepository,
+        UserService userService
+    ) {
         this.employeService = employeService;
         this.employeQueryService = employeQueryService;
+        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     /**
@@ -142,5 +164,68 @@ public class EmployeResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    /**
+     * {@code POST  /employes/{id}/user} : Create a user employe.
+     *
+     * @param userDTO the userDTO to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the employeDTO with userId, or with status {@code 400 (Bad Request)} if the user already exist
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PostMapping("/employes/{id}/user")
+    public ResponseEntity<EmployeDTO> createEmployeUser(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO)
+        throws URISyntaxException {
+        log.debug("REST request to save Employe Id and User : {} {}", id, userDTO);
+        Optional<EmployeDTO> employeDTO = employeService.findOne(id);
+
+        if (!employeDTO.isPresent()) {
+            return ResponseUtil.wrapOrNotFound(employeDTO);
+        }
+        if (userDTO.getId() != null) {
+            throw new BadRequestAlertException("A new user cannot already have an ID", "userManagement", "idexists");
+            // Lowercase the user login before comparing with database
+        } else if (userRepository.findOneByLogin(userDTO.getLogin().toLowerCase()).isPresent()) {
+            throw new LoginAlreadyUsedException();
+        } else if (userRepository.findOneByEmailIgnoreCase(userDTO.getEmail()).isPresent()) {
+            throw new EmailAlreadyUsedException();
+        } else {
+            //Transaction: create user and assign it to employe
+            EmployeDTO employe = employeService.saveEmployeUser(employeDTO.get(), userDTO, this.defaultPassword);
+            return ResponseEntity
+                .created(new URI("/api/employes/" + employe.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_USER_NAME, employe.getId().toString()))
+                .body(employe);
+        }
+    }
+
+    /**
+     * {@code PUT  /employes/{id}/user} : Update a user employe.
+     *
+     * @param userDTO the userDTO to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the employeDTO with userId, or with status {@code 400 (Bad Request)} if the user already exist
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PutMapping("/employes/{id}/user")
+    public ResponseEntity<EmployeDTO> updateEmployeUser(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO)
+        throws URISyntaxException {
+        log.debug("REST request to update Employe Id and User : {} {}", id, userDTO);
+        //Optional<EmployeDTO> employeDTO = employeService.findOne(id);
+
+        Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
+        if (existingUser.isPresent() && (!existingUser.get().getId().equals(userDTO.getId()))) {
+            throw new EmailAlreadyUsedException();
+        }
+        existingUser = userRepository.findOneByLogin(userDTO.getLogin().toLowerCase());
+        if (existingUser.isPresent() && (!existingUser.get().getId().equals(userDTO.getId()))) {
+            throw new LoginAlreadyUsedException();
+        }
+
+        Optional<UserDTO> updatedUser = userService.updateUser(userDTO);
+
+        return ResponseEntity
+            .ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_USER_NAME, id.toString()))
+            .body(null);
     }
 }

@@ -32,14 +32,10 @@
                                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                                     <th scope="col"  jhiSortBy="codBnk"><span jhiTranslate="bankLoanManagerApp.employe.codBnk">Cod Bnk</span> <fa-icon icon="sort"></fa-icon></th>
                                     <th scope="col"  jhiSortBy="codEmp"><span jhiTranslate="bankLoanManagerApp.employe.codEmp">Cod Emp</span> <fa-icon icon="sort"></fa-icon></th>
-                                    <th scope="col"  jhiSortBy="rsEmp"><span jhiTranslate="bankLoanManagerApp.employe.rsEmp">Rs Emp</span> <fa-icon icon="sort"></fa-icon></th>
+                                    <th scope="col"  jhiSortBy="numMat"><span jhiTranslate="bankLoanManagerApp.employe.numMat">Num Mat</span> <fa-icon icon="sort"></fa-icon></th>
                                     <th scope="col"  jhiSortBy="nomEmp"><span jhiTranslate="bankLoanManagerApp.employe.nomEmp">Nom Emp</span> <fa-icon icon="sort"></fa-icon></th>
                                     <th scope="col"  jhiSortBy="prenomEmp"><span jhiTranslate="bankLoanManagerApp.employe.prenomEmp">Prenom Emp</span> <fa-icon icon="sort"></fa-icon></th>
                                     <th scope="col"  jhiSortBy="fctEmp"><span jhiTranslate="bankLoanManagerApp.employe.fctEmp">Fct Emp</span> <fa-icon icon="sort"></fa-icon></th>
-                                    <th scope="col"  jhiSortBy="adrEmp"><span jhiTranslate="bankLoanManagerApp.employe.adrEmp">Adr Emp</span> <fa-icon icon="sort"></fa-icon></th>
-                                    <th scope="col"  jhiSortBy="teEmp"><span jhiTranslate="bankLoanManagerApp.employe.teEmp">Te Emp</span> <fa-icon icon="sort"></fa-icon></th>
-                                    <th scope="col"  jhiSortBy="typEnmp"><span jhiTranslate="bankLoanManagerApp.employe.typEnmp">Typ Enmp</span> <fa-icon icon="sort"></fa-icon></th>
-                                    <th scope="col"  jhiSortBy="numMat"><span jhiTranslate="bankLoanManagerApp.employe.numMat">Num Mat</span> <fa-icon icon="sort"></fa-icon></th>
                                     <th scope="col"  jhiSortBy="userLogin"><span jhiTranslate="bankLoanManagerApp.employe.user">User</span> <fa-icon icon="sort"></fa-icon></th>
                                     <th scope="col"></th>
                                 </tr>
@@ -49,28 +45,24 @@
                                     <td><a [routerLink]="['/employe', employe.id, 'view']">{{ employe.id }}</a></td>
                                     <td>{{ employe.codBnk }}</td>
                                     <td>{{ employe.codEmp }}</td>
-                                    <td>{{ employe.rsEmp }}</td>
+                                    <td>{{ employe.numMat }}</td>
                                     <td>{{ employe.nomEmp }}</td>
                                     <td>{{ employe.prenomEmp }}</td>
                                     <td>{{ employe.fctEmp }}</td>
-                                    <td>{{ employe.adrEmp }}</td>
-                                    <td>{{ employe.teEmp }}</td>
-                                    <td>{{ employe.typEnmp }}</td>
-                                    <td>{{ employe.numMat }}</td>
                                     <td>
                                         {{ employe.userLogin }}
                                     </td>
                                     <td class="text-right">
                                         <div class="btn-group">
                                             <button type="submit"
-                                                    [routerLink]="['/employe', employe.id, 'view']"
+                                                    [routerLink]="['/admin/employe', employe.id, 'view']"
                                                     class="btn btn-info btn-sm">
                                                 <fa-icon icon="eye"></fa-icon>
                                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                                             </button>
 
                                             <button type="submit"
-                                                    [routerLink]="['/employe', employe.id, 'edit']"
+                                                    [routerLink]="['/admin/employe', employe.id, 'edit']"
                                                     class="btn btn-primary btn-sm">
                                                 <fa-icon icon="pencil-alt"></fa-icon>
                                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
