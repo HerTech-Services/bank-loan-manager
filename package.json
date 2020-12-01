@@ -30,6 +30,7 @@
     "ngx-cookie-service": "3.0.4",
     "ngx-infinite-scroll": "9.0.0",
     "ngx-perfect-scrollbar": "^10.0.1",
+    "ngx-treeview": "^10.0.2",
     "ngx-webstorage": "5.0.0",
     "rxjs": "6.5.5",
     "swagger-ui-dist": "3.25.1",

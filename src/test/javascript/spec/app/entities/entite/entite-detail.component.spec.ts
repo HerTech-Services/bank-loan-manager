@@ -4,7 +4,7 @@ import { of } from 'rxjs';
 import { JhiDataUtils } from 'ng-jhipster';
 
 import { BankLoanManagerTestModule } from '../../../test.module';
-import { EntiteDetailComponent } from 'app/entities/entite/entite-detail.component';
+import { EntiteDetailComponent } from 'app/admin/entite/entite-detail.component';
 import { Entite } from 'app/shared/model/entite.model';
 
 describe('Component Tests', () => {

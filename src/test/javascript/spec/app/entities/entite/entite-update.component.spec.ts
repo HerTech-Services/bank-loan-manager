@@ -4,8 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
 
 import { BankLoanManagerTestModule } from '../../../test.module';
-import { EntiteUpdateComponent } from 'app/entities/entite/entite-update.component';
-import { EntiteService } from 'app/entities/entite/entite.service';
+import { EntiteUpdateComponent } from 'app/admin/entite/entite-update.component';
+import { EntiteService } from 'app/admin/entite/entite.service';
 import { Entite } from 'app/shared/model/entite.model';
 
 describe('Component Tests', () => {

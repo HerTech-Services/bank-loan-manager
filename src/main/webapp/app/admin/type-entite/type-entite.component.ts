@@ -24,7 +24,7 @@ export class TypeEntiteComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
-
+  breadCrumbItems?: Array<{}>;
   constructor(
     protected typeEntiteService: TypeEntiteService,
     protected activatedRoute: ActivatedRoute,
@@ -49,6 +49,8 @@ export class TypeEntiteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.breadCrumbItems = [{ label: 'global.menu.admin.main' }, { label: 'bankLoanManagerApp.employe.home.title', active: true }];
+
     this.handleNavigation();
     this.registerChangeInTypeEntites();
   }

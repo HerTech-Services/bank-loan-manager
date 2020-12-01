@@ -18,6 +18,14 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./employe/employe.module').then(m => m.BankLoanManagerEmployeModule),
       },
       {
+        path: 'type-entite',
+        loadChildren: () => import('./type-entite/type-entite.module').then(m => m.BankLoanManagerTypeEntiteModule),
+      },
+      {
+        path: 'entite',
+        loadChildren: () => import('./entite/entite.module').then(m => m.BankLoanManagerEntiteModule),
+      },
+      {
         path: 'audits',
         loadChildren: () => import('./audits/audits.module').then(m => m.AuditsModule),
       },

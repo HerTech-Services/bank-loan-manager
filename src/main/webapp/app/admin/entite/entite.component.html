@@ -1,0 +1,35 @@
+<div class="container-fluid">
+
+    <jhi-page-title title="bankLoanManagerApp.entite.home.title" [breadcrumbItems]="breadCrumbItems"></jhi-page-title>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-entite" [routerLink]="['/admin/entite/new']">
+                        <fa-icon icon="plus"></fa-icon>
+                        <span  jhiTranslate="bankLoanManagerApp.entite.home.createLabel">
+                        Create a new Entite
+                        </span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <jhi-alert-error></jhi-alert-error>
+
+                    <jhi-alert></jhi-alert>
+
+                    <div class="alert alert-warning" id="no-result" *ngIf="entites?.length === 0">
+                        <span jhiTranslate="bankLoanManagerApp.entite.home.notFound">No entites found</span>
+                    </div>
+                    <div class="alert alert-success" role="alert">
+                        Selected books: {{values}}
+                    </div>
+                    <ngx-treeview [config]="config" [items]="items" (filterChange)="onFilterChange($event)"
+                                  (selectedChange)="values = $event">
+                    </ngx-treeview>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

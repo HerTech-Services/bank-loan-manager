@@ -10,6 +10,8 @@ import { IEntite } from 'app/shared/model/entite.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { EntiteService } from './entite.service';
 import { EntiteDeleteDialogComponent } from './entite-delete-dialog.component';
+import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
+import { LogService } from 'app/log.service';
 
 @Component({
   selector: 'jhi-entite',
@@ -17,6 +19,8 @@ import { EntiteDeleteDialogComponent } from './entite-delete-dialog.component';
 })
 export class EntiteComponent implements OnInit, OnDestroy {
   entites?: IEntite[];
+  items?: TreeviewItem[];
+  values?: number[];
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -24,6 +28,14 @@ export class EntiteComponent implements OnInit, OnDestroy {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  breadCrumbItems?: Array<{}>;
+  config = TreeviewConfig.create({
+    hasAllCheckBox: false,
+    hasFilter: true,
+    hasCollapseExpand: true,
+    decoupleChildFromParent: false,
+    maxHeight: 400,
+  });
 
   constructor(
     protected entiteService: EntiteService,
@@ -31,7 +43,8 @@ export class EntiteComponent implements OnInit, OnDestroy {
     protected dataUtils: JhiDataUtils,
     protected router: Router,
     protected eventManager: JhiEventManager,
-    protected modalService: NgbModal
+    protected modalService: NgbModal,
+    protected logService: LogService
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
@@ -50,8 +63,14 @@ export class EntiteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.breadCrumbItems = [{ label: 'global.menu.admin.main' }, { label: 'bankLoanManagerApp.entite.home.title', active: true }];
+    this.items = this.entiteService.getBooks() || [];
     this.handleNavigation();
     this.registerChangeInEntites();
+  }
+
+  onFilterChange(value: string): void {
+    this.logService.log('filter:' + value);
   }
 
   protected handleNavigation(): void {

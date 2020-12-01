@@ -34,7 +34,7 @@ export class EntiteUpdateComponent implements OnInit {
     parameters: [],
     parentId: [null, [Validators.maxLength(32)]],
   });
-
+  breadCrumbItems?: Array<{}>;
   constructor(
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
@@ -44,6 +44,11 @@ export class EntiteUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.breadCrumbItems = [
+      { label: 'global.menu.admin.main' },
+      { label: 'bankLoanManagerApp.entite.home.title' },
+      { label: 'bankLoanManagerApp.entite.home.createOrEditLabel', active: true },
+    ];
     this.activatedRoute.data.subscribe(({ entite }) => {
       this.updateForm(entite);
     });

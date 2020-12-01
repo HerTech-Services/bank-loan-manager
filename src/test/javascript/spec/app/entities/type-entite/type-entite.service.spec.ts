@@ -1,6 +1,6 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TypeEntiteService } from 'app/entities/type-entite/type-entite.service';
+import { TypeEntiteService } from 'app/admin/type-entite/type-entite.service';
 import { ITypeEntite, TypeEntite } from 'app/shared/model/type-entite.model';
 
 describe('Service Tests', () => {

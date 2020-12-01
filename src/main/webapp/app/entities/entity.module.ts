@@ -87,14 +87,6 @@ const LAYOUT_ROUTES = [navbarRoute];
         loadChildren: () => import('./task-log/task-log.module').then(m => m.BankLoanManagerTaskLogModule),
       },
       {
-        path: 'type-entite',
-        loadChildren: () => import('./type-entite/type-entite.module').then(m => m.BankLoanManagerTypeEntiteModule),
-      },
-      {
-        path: 'entite',
-        loadChildren: () => import('./entite/entite.module').then(m => m.BankLoanManagerEntiteModule),
-      },
-      {
         path: 'employe-entite',
         loadChildren: () => import('./employe-entite/employe-entite.module').then(m => m.BankLoanManagerEmployeEntiteModule),
       },

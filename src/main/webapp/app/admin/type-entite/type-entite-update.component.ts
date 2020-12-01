@@ -21,10 +21,15 @@ export class TypeEntiteUpdateComponent implements OnInit {
     label: [null, [Validators.required]],
     shortLabel: [null, [Validators.maxLength(50)]],
   });
-
+  breadCrumbItems?: Array<{}>;
   constructor(protected typeEntiteService: TypeEntiteService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.breadCrumbItems = [
+      { label: 'global.menu.admin.main' },
+      { label: 'bankLoanManagerApp.typeEntite.home.title' },
+      { label: 'bankLoanManagerApp.typeEntite.home.createOrEditLabel', active: true },
+    ];
     this.activatedRoute.data.subscribe(({ typeEntite }) => {
       this.updateForm(typeEntite);
     });

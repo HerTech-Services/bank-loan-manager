@@ -48,7 +48,7 @@ export class EmployeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.breadCrumbItems = [{ label: 'global.menu.admin.main' }, { label: 'bankLoanManagerApp.employe.home.title', active: true }];
+    this.breadCrumbItems = [{ label: 'global.menu.admin.main' }, { label: 'bankLoanManagerApp.typeEntite.home.title', active: true }];
     this.handleNavigation();
     this.registerChangeInEmployes();
   }

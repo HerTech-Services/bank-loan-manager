@@ -6,8 +6,8 @@ import { JhiEventManager } from 'ng-jhipster';
 import { BankLoanManagerTestModule } from '../../../test.module';
 import { MockEventManager } from '../../../helpers/mock-event-manager.service';
 import { MockActiveModal } from '../../../helpers/mock-active-modal.service';
-import { EntiteDeleteDialogComponent } from 'app/entities/entite/entite-delete-dialog.component';
-import { EntiteService } from 'app/entities/entite/entite.service';
+import { EntiteDeleteDialogComponent } from 'app/admin/entite/entite-delete-dialog.component';
+import { EntiteService } from 'app/admin/entite/entite.service';
 
 describe('Component Tests', () => {
   describe('Entite Management Delete Component', () => {

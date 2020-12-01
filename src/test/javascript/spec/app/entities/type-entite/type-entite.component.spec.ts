@@ -4,8 +4,8 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 
 import { BankLoanManagerTestModule } from '../../../test.module';
-import { TypeEntiteComponent } from 'app/entities/type-entite/type-entite.component';
-import { TypeEntiteService } from 'app/entities/type-entite/type-entite.service';
+import { TypeEntiteComponent } from 'app/admin/type-entite/type-entite.component';
+import { TypeEntiteService } from 'app/admin/type-entite/type-entite.service';
 import { TypeEntite } from 'app/shared/model/type-entite.model';
 
 describe('Component Tests', () => {

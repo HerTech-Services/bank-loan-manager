@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 import { BankLoanManagerTestModule } from '../../../test.module';
-import { TypeEntiteDetailComponent } from 'app/entities/type-entite/type-entite-detail.component';
+import { TypeEntiteDetailComponent } from 'app/admin/type-entite/type-entite-detail.component';
 import { TypeEntite } from 'app/shared/model/type-entite.model';
 
 describe('Component Tests', () => {
