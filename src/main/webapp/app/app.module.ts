@@ -9,12 +9,14 @@ import { BankLoanManagerAppRoutingModule } from './app-routing.module';
 import { ErrorComponent } from './layouts/error/error.component';
 import { AppComponent } from './app.component';
 import { BankLoanManagerLayoutsModule } from 'app/layouts/layouts.module';
+import { TreeModule } from '@circlon/angular-tree-component';
 
 @NgModule({
   imports: [
     BrowserModule,
     BankLoanManagerSharedModule,
     BankLoanManagerCoreModule,
+    TreeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     BankLoanManagerAppRoutingModule,
     BankLoanManagerLayoutsModule,

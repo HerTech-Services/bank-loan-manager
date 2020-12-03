@@ -125,4 +125,16 @@ public class EntiteResource {
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
     }
+
+    /**
+     * {@code GET  /entites/tree} : get all the entites as tree.
+     *
+     * @return the {@link EntiteDTO} with status {@code 200 (OK)} and the list of entites as tree in body.
+     */
+    @GetMapping("/entites/tree")
+    public List<EntiteDTO> getAllEntitesAsTree() {
+        log.debug("REST request to get a page of Entites");
+        List<EntiteDTO> lEntiteTree = entiteService.findAllAsTree();
+        return lEntiteTree;
+    }
 }

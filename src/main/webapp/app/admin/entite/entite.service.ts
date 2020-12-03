@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IEntite } from 'app/shared/model/entite.model';
-import { TreeviewItem } from 'ngx-treeview';
+import { LogService } from 'app/log.service';
+import { CustomTreeviewItem } from 'app/shared/ui/custom/treeview.item';
 
 type EntityResponseType = HttpResponse<IEntite>;
 type EntityArrayResponseType = HttpResponse<IEntite[]>;
@@ -14,7 +16,7 @@ type EntityArrayResponseType = HttpResponse<IEntite[]>;
 export class EntiteService {
   public resourceUrl = SERVER_API_URL + 'api/entites';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, protected logService: LogService) {}
 
   create(entite: IEntite): Observable<EntityResponseType> {
     return this.http.post<IEntite>(this.resourceUrl, entite, { observe: 'response' });
@@ -37,8 +39,38 @@ export class EntiteService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
-  getBooks(): TreeviewItem[] | null {
-    const childrenCategory = new TreeviewItem({
+  getEntiteAsTree(): Observable<any[]> {
+    return this.http.get<IEntite[]>(SERVER_API_URL + 'api/entites/tree').pipe(
+      map((data: IEntite[]) => {
+        const entiteRootList: IEntite[] = data.filter(entite => entite.parent === null);
+        const root: any[] = [];
+        entiteRootList.forEach((entite: IEntite) => {
+          root.push({
+            name: entite.label!,
+            id: entite.id!,
+            children: this.getChildrenEntite(entite.id!, data),
+          });
+        });
+        return root;
+      })
+    );
+  }
+
+  getChildrenEntite(parentId: number, entiteList: IEntite[]): CustomTreeviewItem[] {
+    const entiteChildrenList: IEntite[] = entiteList.filter(entite => entite.parent === parentId);
+    const entiteTree: any[] = [];
+    entiteChildrenList.forEach((entite: IEntite) => {
+      entiteTree.push({
+        name: entite.label!,
+        id: entite.id!,
+        children: this.getChildrenEntite(entite.id!, entiteList),
+      });
+    });
+    return entiteTree;
+  }
+
+  getBooks(): CustomTreeviewItem[] | null {
+    const childrenCategory = new CustomTreeviewItem({
       text: 'Children',
       value: 1,
       collapsed: true,
@@ -48,7 +80,7 @@ export class EntiteService {
         { text: 'Baby 9-12', value: 13 },
       ],
     });
-    const itCategory = new TreeviewItem({
+    const itCategory = new CustomTreeviewItem({
       text: 'IT',
       value: 9,
       children: [
@@ -86,7 +118,7 @@ export class EntiteService {
         },
       ],
     });
-    const teenCategory = new TreeviewItem({
+    const teenCategory = new CustomTreeviewItem({
       text: 'Teen',
       value: 2,
       collapsed: true,
@@ -96,7 +128,7 @@ export class EntiteService {
         { text: 'Science', value: 22 },
       ],
     });
-    const othersCategory = new TreeviewItem({ text: 'Others', value: 3, checked: false, disabled: true });
+    const othersCategory = new CustomTreeviewItem({ text: 'Others', value: 3, checked: false, disabled: true });
     return [childrenCategory, itCategory, teenCategory, othersCategory];
   }
 }

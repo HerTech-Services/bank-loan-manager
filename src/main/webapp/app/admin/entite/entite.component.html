@@ -12,6 +12,11 @@
                         Create a new Entite
                         </span>
                     </button>
+                    <button type="button" (click)="delete(selectedNode)"
+                            class="btn btn-danger btn-sm">
+                        <fa-icon icon="times"></fa-icon>
+                        <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                    </button>
                 </div>
                 <div class="card-body">
                     <jhi-alert-error></jhi-alert-error>
@@ -21,12 +26,33 @@
                     <div class="alert alert-warning" id="no-result" *ngIf="entites?.length === 0">
                         <span jhiTranslate="bankLoanManagerApp.entite.home.notFound">No entites found</span>
                     </div>
-                    <div class="alert alert-success" role="alert">
-                        Selected books: {{values}}
-                    </div>
-                    <ngx-treeview [config]="config" [items]="items" (filterChange)="onFilterChange($event)"
-                                  (selectedChange)="values = $event">
-                    </ngx-treeview>
+                    Active {{selectedNode | json}}
+                    <hr/>
+                    Desactive {{deactivateNode | json}}
+                    <hr/>
+                    <input id="filter" #filter (keyup)="entiteTreeComponent.treeModel.filterNodes(filter.value)" placeholder="filter nodes"/>
+                    <tree-root
+                        #entiteTreeComponent
+                        [focused]="true"
+                        [nodes]="nodes"
+                        [options]="options">
+                        <ng-template #treeNodeFullTemplate let-node let-index="index" let-templates="templates">
+                            <div class="tree-node">
+                                <input type="checkbox" [checked]="node.isActive" (change)="onChange(node)" />
+                                <tree-node-expander [node]="node"></tree-node-expander>
+                                <div
+                                    class="node-content-wrapper"
+                                    [class.node-content-wrapper-active]="node.isActive"
+                                    [class.node-content-wrapper-focused]="false"
+                                    (click)="onChange(node)">
+                                    <span [class]="node.data.className + 'Index'">{{ node.data.id }}</span>
+                                    <span [class]="node.data.className" [class.title]="true">{{ node.data.name }}</span>
+                                </div>
+                                <tree-node-children [node]="node" [templates]="templates"></tree-node-children>
+                            </div>
+                        </ng-template>
+                    </tree-root>
+
                 </div>
             </div>
         </div>

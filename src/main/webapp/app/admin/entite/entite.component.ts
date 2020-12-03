@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, ParamMap, Router, Data } from '@angular/router';
 import { Subscription, combineLatest } from 'rxjs';
@@ -10,8 +10,8 @@ import { IEntite } from 'app/shared/model/entite.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { EntiteService } from './entite.service';
 import { EntiteDeleteDialogComponent } from './entite-delete-dialog.component';
-import { TreeviewItem, TreeviewConfig } from 'ngx-treeview';
 import { LogService } from 'app/log.service';
+import { ITreeOptions, TreeComponent, TreeNode, TREE_ACTIONS } from '@circlon/angular-tree-component';
 
 @Component({
   selector: 'jhi-entite',
@@ -19,8 +19,6 @@ import { LogService } from 'app/log.service';
 })
 export class EntiteComponent implements OnInit, OnDestroy {
   entites?: IEntite[];
-  items?: TreeviewItem[];
-  values?: number[];
   eventSubscriber?: Subscription;
   totalItems = 0;
   itemsPerPage = ITEMS_PER_PAGE;
@@ -29,13 +27,12 @@ export class EntiteComponent implements OnInit, OnDestroy {
   ascending!: boolean;
   ngbPaginationPage = 1;
   breadCrumbItems?: Array<{}>;
-  config = TreeviewConfig.create({
-    hasAllCheckBox: false,
-    hasFilter: true,
-    hasCollapseExpand: true,
-    decoupleChildFromParent: false,
-    maxHeight: 400,
-  });
+  selectedNode: any;
+  deactivateNode: any;
+  nodes: any[] = [];
+  @ViewChild('entiteTreeComponent') entiteTreeComponent!: TreeComponent;
+
+  options: ITreeOptions = {};
 
   constructor(
     protected entiteService: EntiteService,
@@ -48,6 +45,7 @@ export class EntiteComponent implements OnInit, OnDestroy {
   ) {}
 
   loadPage(page?: number, dontNavigate?: boolean): void {
+    /*
     const pageToLoad: number = page || this.page || 1;
 
     this.entiteService
@@ -60,17 +58,21 @@ export class EntiteComponent implements OnInit, OnDestroy {
         (res: HttpResponse<IEntite[]>) => this.onSuccess(res.body, res.headers, pageToLoad, !dontNavigate),
         () => this.onError()
       );
+      */
+    this.entiteService.getEntiteAsTree().subscribe(
+      (entites: any[]) => this.onSuccessEntiteAsTree(entites),
+      () => this.onError()
+    );
   }
 
   ngOnInit(): void {
     this.breadCrumbItems = [{ label: 'global.menu.admin.main' }, { label: 'bankLoanManagerApp.entite.home.title', active: true }];
-    this.items = this.entiteService.getBooks() || [];
-    this.handleNavigation();
+    this.entiteService.getEntiteAsTree().subscribe(
+      (entites: any[]) => this.onSuccessEntiteAsTree(entites),
+      () => this.onError()
+    );
+    // this.handleNavigation();
     this.registerChangeInEntites();
-  }
-
-  onFilterChange(value: string): void {
-    this.logService.log('filter:' + value);
   }
 
   protected handleNavigation(): void {
@@ -111,9 +113,11 @@ export class EntiteComponent implements OnInit, OnDestroy {
     this.eventSubscriber = this.eventManager.subscribe('entiteListModification', () => this.loadPage());
   }
 
-  delete(entite: IEntite): void {
-    const modalRef = this.modalService.open(EntiteDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.entite = entite;
+  delete(node: any): void {
+    if (node !== undefined) {
+      const modalRef = this.modalService.open(EntiteDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+      modalRef.componentInstance.entite = node;
+    }
   }
 
   sort(): string[] {
@@ -142,5 +146,46 @@ export class EntiteComponent implements OnInit, OnDestroy {
 
   protected onError(): void {
     this.ngbPaginationPage = this.page ?? 1;
+  }
+
+  protected onSuccessEntiteAsTree(data: any[] | null): void {
+    this.nodes = data || [];
+    setTimeout(() => this.onExpandAll(), 0);
+  }
+
+  onActivate(event: any) {
+    this.selectedNode = event.node.data;
+    this.entiteTreeComponent.treeModel.doForAll((node: TreeNode) => {
+      if (node.data.id !== event.node.data.id) {
+        if (node.isActive) {
+          node.toggleActivated();
+        }
+      } else {
+        // event.node.setActiveAndVisible();
+      }
+    });
+  }
+
+  onDesactivate(event: any) {
+    this.deactivateNode = event.node.dada;
+    this.selectedNode = undefined;
+  }
+
+  onExpandAll() {
+    this.entiteTreeComponent.treeModel.expandAll();
+    TREE_ACTIONS.TOGGLE_ACTIVE_MULTI;
+  }
+
+  onChange(cur: TreeNode) {
+    this.selectedNode = cur.data;
+    this.entiteTreeComponent.treeModel.doForAll((node: TreeNode) => {
+      if (node.data.id !== cur.data.id) {
+        if (node.isActive) {
+          node.toggleActivated(true);
+        }
+      } else {
+        cur.toggleActivated(true);
+      }
+    });
   }
 }

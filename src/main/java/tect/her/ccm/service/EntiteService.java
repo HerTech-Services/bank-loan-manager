@@ -1,5 +1,6 @@
 package tect.her.ccm.service;
 
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,5 +75,16 @@ public class EntiteService {
     public void delete(Long id) {
         log.debug("Request to delete Entite : {}", id);
         entiteRepository.deleteById(id);
+    }
+
+    /**
+     * Get all the entites.
+     *
+     * @return the list of entities as tree.
+     */
+    @Transactional(readOnly = true)
+    public List<EntiteDTO> findAllAsTree() {
+        log.debug("Request to get all Entites as Tree");
+        return entiteMapper.toDto(entiteRepository.findAll());
     }
 }
